@@ -1,4 +1,5 @@
 import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
+import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:flutter/material.dart';
 import 'pages/home.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Home.routeName: (context) => Home(),
         AddPillReminder.routeName: (context) => AddPillReminder(),
+        RefillReminder.routeName:(context)=> RefillReminder()
       },
     );
   }
