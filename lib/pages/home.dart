@@ -1,3 +1,4 @@
+import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:flutter/material.dart';
 
 class  Home extends StatelessWidget {
@@ -16,7 +17,9 @@ class  Home extends StatelessWidget {
         children: [
           SizedBox(width:double.infinity,
           ),
-          ElevatedButton(onPressed: () {  }, child: Text('Pill Reminders'),
+          ElevatedButton(onPressed: () {
+            Navigator.of(context).pushNamed(AddPillReminder.routeName);
+          }, child: Text('Pill Reminders'),
           ),
           SizedBox(height:30
           ),
