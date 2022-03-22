@@ -1,4 +1,5 @@
 import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
+import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:flutter/material.dart';
 
 class  Home extends StatelessWidget {
@@ -23,7 +24,9 @@ class  Home extends StatelessWidget {
           ),
           SizedBox(height:30
           ),
-          ElevatedButton(onPressed: () {  }, child: Text('Refill Reminders'),
+          ElevatedButton(onPressed: () {
+            Navigator.of(context).pushNamed(RefillReminder.routeName);
+          }, child: Text('Refill Reminders'),
           ),
           SizedBox(height:30
           ),
