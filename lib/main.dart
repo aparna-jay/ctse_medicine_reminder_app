@@ -1,5 +1,5 @@
+import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:flutter/material.dart';
-
 import 'pages/home.dart';
 
 void main() {
@@ -16,15 +16,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-      appBar: AppBar(
-      title: Text("Home"),
-      ),
-        body:const Home(),
-      ),
+      initialRoute: Home.routeName,
+      routes: {
+        Home.routeName: (context) => Home(),
+        AddPillReminder.routeName: (context) => AddPillReminder(),
+      },
     );
   }
 }
