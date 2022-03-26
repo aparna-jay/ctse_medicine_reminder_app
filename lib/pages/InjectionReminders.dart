@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 
-class  InjectionReminder extends StatelessWidget {
-  static const String routeName = '/newInjectionReminder';
-  const  InjectionReminder({Key? key}) : super(key: key);
+class  InjectionReminders extends StatelessWidget {
+  static const String routeName = '/InjectionReminders';
+  const  InjectionReminders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("New Injection Reminder"),
-        ),
-        body:Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(width:double.infinity,
-            ),
-            ElevatedButton(onPressed: () {  }, child: Text('Injection Reminders'),
-            ),
-          ],
-        )
+      appBar: AppBar(
+        title: const Text("Injection Reminders"),
+      ),
+      body:Column(
+        children: const [
+          Text("New Injection Reminder",
+          ),
+
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        // onPressed: () => setState(() => _count++),
+        tooltip: 'Increment Counter',
+        onPressed: () {  },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
