@@ -2,7 +2,7 @@ import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:flutter/material.dart';
 
-import 'InjectionReminders.dart';
+import 'AddInjectionReminder.dart';
 
 class  Home extends StatelessWidget {
   static const String routeName = '/';
@@ -12,33 +12,33 @@ class  Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: const Text("Home"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width:double.infinity,
+          const SizedBox(width:double.infinity,
           ),
           ElevatedButton(onPressed: () {
             Navigator.of(context).pushNamed(AddPillReminder.routeName);
-          }, child: Text('Pill Reminders'),
+          }, child: const Text('Pill Reminders'),
           ),
-          SizedBox(height:30
+          const SizedBox(height:30
           ),
           ElevatedButton(onPressed: () {
             Navigator.of(context).pushNamed(RefillReminder.routeName);
-          }, child: Text('Refill Reminders'),
+          }, child: const Text('Refill Reminders'),
           ),
-          SizedBox(height:30
+          const SizedBox(height:30
           ),
-          ElevatedButton(onPressed: () {  }, child: Text('Health Habit Reminders'),
+          ElevatedButton(onPressed: () {  }, child: const Text('Health Habit Reminders'),
           ),
-          SizedBox(height:30
+          const SizedBox(height:30
           ),
           ElevatedButton(onPressed: () {
-            Navigator.of(context).pushNamed(InjectionReminder.routeName);
-          }, child: Text('Injection Reminders'),
+            Navigator.of(context).pushNamed(AddInjectionReminder.routeName);
+          }, child: const Text('Injection Reminders'),
           ),
 
         ],
