@@ -1,4 +1,4 @@
-import 'package:ctse_medicine_reminder_app/pages/Injection%20reminders.dart';
+import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:flutter/material.dart';
