@@ -2,7 +2,7 @@ import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:flutter/material.dart';
 
-import 'Injection reminders.dart';
+import 'InjectionReminders.dart';
 
 class  Home extends StatelessWidget {
   static const String routeName = '/';
