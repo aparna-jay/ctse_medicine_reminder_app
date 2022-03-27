@@ -299,6 +299,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  sqflite:
+    dependency: "direct main"
+    description:
+      name: sqflite
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  sqflite_common:
+    dependency: transitive
+    description:
+      name: sqflite_common
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.1"
   stack_trace:
     dependency: transitive
     description:
@@ -320,20 +334,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  syncfusion_flutter_core:
+  synchronized:
     dependency: transitive
     description:
-      name: syncfusion_flutter_core
+      name: synchronized
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "19.4.56"
-  syncfusion_flutter_datepicker:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_datepicker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "19.4.56"
+    version: "3.0.0+2"
   term_glyph:
     dependency: transitive
     description:
