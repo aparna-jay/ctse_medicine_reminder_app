@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+
 class RefillReminder extends StatefulWidget {
   static const String routeName = '/RefillReminder';
   const RefillReminder({Key? key}) : super(key: key);
@@ -11,6 +13,27 @@ class RefillReminder extends StatefulWidget {
 
 class _RefillReminderState extends State<RefillReminder> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _doseController = TextEditingController();
+  final TextEditingController _QuantityController = TextEditingController();
+  late DateTime Date ;
+  late DateTime Time ;
+
+  void clear() {
+    _nameController.clear();
+    _doseController.clear();
+    _QuantityController.clear();
+  }
+
+  void _click() {
+    print(_nameController.text);
+    print(_doseController.text);
+    print(_QuantityController.text);
+    print(Date);
+    print(Time);
+    clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,6 +48,7 @@ class _RefillReminderState extends State<RefillReminder> {
             children: [
               const SizedBox(height: 12),
               TextFormField(
+                controller: _nameController,
                 decoration: const InputDecoration(
                   border:OutlineInputBorder(
                     borderSide:BorderSide(color: Colors.limeAccent)
@@ -34,6 +58,7 @@ class _RefillReminderState extends State<RefillReminder> {
               ),
               const SizedBox(height: 12),
               TextFormField(
+                controller: _doseController,
                 decoration: const InputDecoration(
                     border:OutlineInputBorder(
                         borderSide:BorderSide(color: Colors.limeAccent)
@@ -43,6 +68,7 @@ class _RefillReminderState extends State<RefillReminder> {
               ),
               const SizedBox(height:12),
               TextFormField(
+                controller: _QuantityController,
                 decoration: const InputDecoration(
                     border:OutlineInputBorder(
                         borderSide:BorderSide(color: Colors.limeAccent)
@@ -51,42 +77,41 @@ class _RefillReminderState extends State<RefillReminder> {
                 ),
               ),
               Container(
+
                   margin: const EdgeInsets.all(25),
                   child: const Text("TODAY DATE AND TIME")),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
+                        SizedBox(
                           height: 100,
                           child: CupertinoDatePicker(
                             mode: CupertinoDatePickerMode.date,
                             initialDateTime: DateTime.now(),
                             onDateTimeChanged: (DateTime newDateTime) {
-                              // Date = newDateTime;
+                              Date = newDateTime;
                             },
                           ),
-                        ),
                       ),
-                      Expanded(
-                        child:
+
                   SizedBox(
                     height: 100,
                     child: CupertinoDatePicker(
                       mode: CupertinoDatePickerMode.time,
                       initialDateTime: DateTime.now(),
                       onDateTimeChanged: (DateTime newDateTime) {
-                        // Date = newDateTime;
+                        Time = newDateTime;
                       },
                     ),
-              ),
-                      ),
-                    ],
                   ),
               Container(
                 margin: const EdgeInsets.all(25),
                 child: OutlinedButton(
-                    onPressed: (){},
-                    child: const Text("Add Reminder",style: TextStyle(fontSize: 20.0)),
+                    onPressed: (){
+                      if (_formKey.currentState!.validate()) {
+                        _click();
+                      }
+                    },
+                    child: const Text("Add Reminder",
+                        // style: TextStyle(fontSizb -e: 20.0)
+                    ),
                 ),
               )
             ],
