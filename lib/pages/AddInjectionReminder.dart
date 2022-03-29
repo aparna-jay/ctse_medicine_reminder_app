@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:intl/intl.dart';
 
 class  AddInjectionReminder extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   static const String routeName = '/newInjectionReminder';
   AddInjectionReminder({Key? key}) : super(key: key);
+
+  static late String formattedDate =  DateFormat('yyyy-MM-dd' ).format(DateTime.now());
+  static late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,15 @@ class  AddInjectionReminder extends StatelessWidget {
       return TextFormField(
         maxLength: 20,
         maxLines: 1,
-        decoration: InputDecoration(labelText: 'Injection Name', hintText: 'Enter Injection Name'),
+        decoration: InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: 'Injection Name',
+            hintText: 'Enter Injection Name',
+            labelStyle: TextStyle(
+                color: Colors.black87,
+                fontSize: 18,
+              fontWeight: FontWeight.bold,
+                )),
         validator: (InjectionName){
           if(InjectionName!.isEmpty){
             return 'Injection Name can not be empty';
@@ -37,8 +50,15 @@ class  AddInjectionReminder extends StatelessWidget {
       return TextFormField(
         maxLength: 10,
         keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-            labelText: 'Dosage', hintText: 'Enter Dosage (mg)'
+        decoration: const InputDecoration(
+            border: OutlineInputBorder(),
+            labelText: 'Dosage',
+            labelStyle: TextStyle(
+              color: Colors.black87,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+            hintText: 'Enter Dosage (mg)'
         ),
         validator: (text) {
           if (text!.isEmpty) {
@@ -58,7 +78,14 @@ class  AddInjectionReminder extends StatelessWidget {
         maxLength: 2,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
-            labelText: 'Quantity', hintText: 'Enter Quantity'
+            border: OutlineInputBorder(),
+            labelText: 'Quantity',
+          labelStyle: TextStyle(
+            color: Colors.black87,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+            hintText: 'Enter Quantity',
         ),
         validator: (text) {
           if (text!.isEmpty) {
@@ -72,42 +99,51 @@ class  AddInjectionReminder extends StatelessWidget {
       );
     }
 
-    //widget function for Repeat
-    Widget _buildRepeatField() {
-      return TextFormField(
-        decoration: InputDecoration(
-            labelText: 'Repeat', hintText: 'Select from the drop down'
-        ),
-        validator: (text) {
-          if (text!.isEmpty) {
-            return "Please select a value";
-          }
-          return null;
-        },
-        onSaved: (value) {
-          _Repeat = value;
-        },
-      );
-    }
+    // //widget function for Repeat
+    // Widget _buildRepeatField() {
+    //   return TextFormField(
+    //     decoration: InputDecoration(
+    //         border: OutlineInputBorder(),
+    //         labelText: 'Repeat',
+    //         hintText: 'Select from the drop down',
+    //         labelStyle: TextStyle(
+    //           color: Colors.black87,
+    //           fontSize: 18,
+    //           fontWeight: FontWeight.bold,
+    //         ),
+    //     ),
+    //     validator: (text) {
+    //       if (text!.isEmpty) {
+    //         return "Please select a value";
+    //       }
+    //       return null;
+    //     },
+    //     onSaved: (value) {
+    //       _Repeat = value;
+    //     },
+    //   );
+    // }
 
-    //widget function for Time
-    Widget _buildTimeField() {
-      return TextFormField(
-        keyboardType: TextInputType.datetime,
-        decoration: InputDecoration(
-            labelText: 'Time', hintText: 'Select time'
-        ),
-        validator: (text) {
-          if (text!.isEmpty) {
-            return "Please enter a valid Dosage";
-          }
-          return null;
-        },
-        onSaved: (value) {
-          _Time = value as DateTime;
-        },
-      );
-    }
+    // //widget function for Time
+    // Widget _buildTimeField() {
+    //   return TextFormField(
+    //     keyboardType: TextInputType.datetime,
+    //     decoration: InputDecoration(
+    //         border: OutlineInputBorder(),
+    //         labelText: 'Time',
+    //         hintText: 'Select time'
+    //     ),
+    //     validator: (text) {
+    //       if (text!.isEmpty) {
+    //         return "Please enter a valid Dosage";
+    //       }
+    //       return null;
+    //     },
+    //     onSaved: (value) {
+    //       _Time = value as DateTime;
+    //     },
+    //   );
+    // }
 
 
 
@@ -126,25 +162,64 @@ class  AddInjectionReminder extends StatelessWidget {
                 children: <Widget>[
                   //text field functions
                   Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: _buildInjectionNameField(),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: _buildDosageField(),
                   ),Padding(
-                    padding: const EdgeInsets.all(4.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: _buildQuantityField(),
-                  ),Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: _buildRepeatField(),
-                  ),Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child:  _buildTimeField(),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("Repeat", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      SizedBox(
+                        height: 50,
+                        width: 300,
+                        child: FormBuilderDropdown(
+                          name: 'dropdown',
+                          items: ['Hourly', 'Daily', 'Weekly']
+                              .map((repeat) =>
+                              DropdownMenuItem(value: repeat, child: Text("$repeat")))
+                              .toList(),
+                        ),
+                      ),
+                    ],
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(4.0),
+                  //   child: _buildRepeatField(),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(4.0),
+                  //   child:  _buildTimeField(),
+                  // ),
 
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+            ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text("Time", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                      SizedBox(
+                        height: 50,
+                        width: 300,
+                        child: CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.time,
+                          initialDateTime: DateTime.now(),
+                          onDateTimeChanged: (DateTime newDateTime) {
+                            formattedTime = DateFormat('kk:mm').format(newDateTime);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(
-                    height: 170,
+                    height: 80,
                     width: 200,
                   ),
                   ElevatedButton(onPressed: () {
