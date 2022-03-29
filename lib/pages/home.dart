@@ -1,3 +1,4 @@
+import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
@@ -39,7 +40,7 @@ class  Home extends StatelessWidget {
           const SizedBox(height:30
           ),
           ElevatedButton(onPressed: () {
-            Navigator.of(context).pushNamed(AddInjectionReminder.routeName);
+            Navigator.of(context).pushNamed(InjectionReminders.routeName);
           }, child: const Text('Injection Reminders'),
           ),
           const SizedBox(height:30
