@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Sql_helper_pages/SQL_helper_ReFillReminder.dart';
 import 'package:intl/intl.dart';
+
+import 'Sql_helper_pages/SQL_helper_ReFillReminder.dart';
 
 
 class RefillReminder extends StatefulWidget {
   static const String routeName = '/RefillReminder';
-
   const RefillReminder({Key? key}) : super(key: key);
-
   @override
   State<RefillReminder> createState() => _RefillReminderState();
 }
@@ -19,7 +18,7 @@ class _RefillReminderState extends State<RefillReminder> {
   List<Map<String, dynamic  >> RefillReminderList = [];
 
   bool isLoading = true;
-  // This function is used to fetch all data from the database
+  // fetch all data from the database
   void _refreshList() async {
     final data = await SQL_helper_ReFillReminder.getItems();
     setState(() {
@@ -43,11 +42,11 @@ class _RefillReminderState extends State<RefillReminder> {
 
   void _showForm(int? id) async {
     if (id != null) {
-      final refilllist =
+      final refillList =
       RefillReminderList.firstWhere((element) => element['id'] == id);
-      _nameController.text = refilllist['name'];
-      _doseController.text = refilllist['dose'];
-      _QuantityController.text = refilllist['quantity'];
+      _nameController.text = refillList['name'];
+      _doseController.text = refillList['dose'];
+      _QuantityController.text = refillList['quantity'];
     }
 
     showModalBottomSheet(
@@ -55,7 +54,6 @@ class _RefillReminderState extends State<RefillReminder> {
         elevation: 5,
         isScrollControlled: true,
         builder: (_) => Container(
-          // key: _formKey,
           child: Column(
             children: [
               const SizedBox(height: 12),
@@ -118,7 +116,7 @@ class _RefillReminderState extends State<RefillReminder> {
                   onPressed: ()async {
                     // if (_formKey.currentState!.validate()) {
                     if (id == null) {
-                      await addItem();
+                      await _addItem();
                     }
                     if (id != null) {
                       await _updateItem(id);
@@ -126,7 +124,6 @@ class _RefillReminderState extends State<RefillReminder> {
                     // }
                     Navigator.of(context).pop();
                   },
-
                   child:
                   const Text("Add Reminder",
                     // style: TextStyle(fontSizb -e: 20.0)
@@ -140,7 +137,7 @@ class _RefillReminderState extends State<RefillReminder> {
   }
 
 
-  Future<void> addItem() async {
+  Future<void> _addItem() async {
     await SQL_helper_ReFillReminder.createItem(
         _nameController.text,
         _doseController.text,
@@ -157,6 +154,8 @@ class _RefillReminderState extends State<RefillReminder> {
         _nameController.text,
         _doseController.text,
         _QuantityController.text,
+        formattedDate,
+        formattedTime,
     );
     _refreshList();
   }
@@ -169,15 +168,6 @@ class _RefillReminderState extends State<RefillReminder> {
     ));
     _refreshList();
   }
-  // void _click() {
-  //   addItem();
-  //   print(_nameController.text);
-  //   print(_doseController.text);
-  //   print(_QuantityController.text);
-  //   print(Date);
-  //   print(Time);
-  //   // clear();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -196,18 +186,23 @@ class _RefillReminderState extends State<RefillReminder> {
           margin: const EdgeInsets.all(15),
           child: ListTile(
               title: Text(RefillReminderList[index]['name']),
-              subtitle: Text(RefillReminderList[index]['dose']),
-              trailing: SizedBox(
-                width: 100,
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.edit),
-                      onPressed: () => _showForm(RefillReminderList[index]['id']),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () =>{
+                    subtitle: Text('Date : ' +
+                        RefillReminderList[index]['date'] +
+                        "\n" +
+                        'time : ' +
+                        RefillReminderList[index]['time']),
+                    trailing: SizedBox(
+                      width: 100,
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () =>
+                                _showForm(RefillReminderList[index]['id']),
+                          ),
+                          IconButton(
+                              icon: const Icon(Icons.delete),
+                              onPressed: () =>{
                           _deleteItem(RefillReminderList[index]['id']),
                       }
                     ),

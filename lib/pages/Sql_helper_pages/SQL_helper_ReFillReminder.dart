@@ -65,8 +65,8 @@ class SQL_helper_ReFillReminder {
       String name,
       String dose,
       String quantity,
-      // String date,
-      // String time,
+      String date,
+      String time,
       ) async {
     final db = await SQL_helper_ReFillReminder.db();
 
@@ -74,8 +74,8 @@ class SQL_helper_ReFillReminder {
       'name': name,
       'dose': dose,
       'quantity': quantity,
-      // 'date': date,
-      // 'time': time,
+      'date': date,
+      'time': time,
     };
 
     final result =
