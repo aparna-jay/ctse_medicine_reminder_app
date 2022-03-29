@@ -4,6 +4,7 @@ import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:flutter/material.dart';
 
 import 'AddInjectionReminder.dart';
+import 'feedbackForm.dart';
 
 class  Home extends StatelessWidget {
   static const String routeName = '/';
@@ -41,7 +42,12 @@ class  Home extends StatelessWidget {
             Navigator.of(context).pushNamed(AddInjectionReminder.routeName);
           }, child: const Text('Injection Reminders'),
           ),
-
+          const SizedBox(height:30
+          ),
+          ElevatedButton(onPressed: () {
+            Navigator.of(context).pushNamed(FeedbackForm.routeName);
+          }, child: const Text('Feedback'),
+          ),
         ],
       ),
     );
