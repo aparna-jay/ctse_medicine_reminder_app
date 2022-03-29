@@ -1,30 +1,49 @@
+import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
+import 'Sql_helper_pages/sql_helper_InjectionReminder.dart';
 
 class  AddInjectionReminder extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  static const String routeName = '/newInjectionReminder';
-  AddInjectionReminder({Key? key}) : super(key: key);
+  static const String routeName = '/addInjectionReminder';
+  AddInjectionReminder({Key? key, required this.id}) : super(key: key);
 
-  static late String formattedDate =  DateFormat('yyyy-MM-dd' ).format(DateTime.now());
   static late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _dosageController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController();
+  final TextEditingController _repeatController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
+
+  final String id;
+  //Insert a new Injection reminder to the database
+  Future<void> _addInjectionReminder()async{
+    await SQLHelperInjectionReminder.createInjectionReminder(
+      _nameController.text,
+      _dosageController.text,
+        _quantityController.text,
+        _repeatController.text, _timeController.text);
+  }
+
 
   @override
   Widget build(BuildContext context) {
-    String? _Injectionname;
-    int _Dosage;
-    int _Quantity;
-    String? _Repeat;
-    DateTime _Time;
+    // String? _Injectionname;
+    // int _Dosage;
+    // int _Quantity;
+    // String? _Repeat;
+    // DateTime _Time;
 
     //widget function for Injection Name
     Widget _buildInjectionNameField(){
       return TextFormField(
         maxLength: 20,
         maxLines: 1,
+        controller: _nameController,
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Injection Name',
@@ -40,9 +59,6 @@ class  AddInjectionReminder extends StatelessWidget {
           }
           return null;
         },
-        onSaved: (value) {
-          _Injectionname = value;
-        },
       );
     }
 
@@ -50,6 +66,7 @@ class  AddInjectionReminder extends StatelessWidget {
       return TextFormField(
         maxLength: 10,
         keyboardType: TextInputType.number,
+        controller: _dosageController,
         decoration: const InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Dosage',
@@ -66,9 +83,9 @@ class  AddInjectionReminder extends StatelessWidget {
           }
           return null;
         },
-        onSaved: (value) {
-          _Dosage = int.parse(value!);
-        },
+        // onSaved: (value) {
+        //   _Dosage = int.parse(value!);
+        // },
       );
     }
 
@@ -77,6 +94,7 @@ class  AddInjectionReminder extends StatelessWidget {
       return TextFormField(
         maxLength: 2,
         keyboardType: TextInputType.number,
+        controller: _quantityController,
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Quantity',
@@ -93,9 +111,9 @@ class  AddInjectionReminder extends StatelessWidget {
           }
           return null;
         },
-        onSaved: (value) {
-          _Quantity = int.parse(value!);
-        },
+        // onSaved: (value) {
+        //   _Quantity = int.parse(value!);
+        // },
       );
     }
 
@@ -186,7 +204,9 @@ class  AddInjectionReminder extends StatelessWidget {
                               DropdownMenuItem(value: repeat, child: Text("$repeat")))
                               .toList(),
                         ),
+
                       ),
+
                     ],
                   ),
                   // Padding(
@@ -218,21 +238,26 @@ class  AddInjectionReminder extends StatelessWidget {
                       ),
                     ],
                   ),
+
                   const SizedBox(
                     height: 80,
                     width: 200,
                   ),
-                  ElevatedButton(onPressed: () {
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                  ElevatedButton(onPressed: () async{
+                      await _addInjectionReminder();
+                      Navigator.of(context).pushNamed(InjectionReminders.routeName);
                     // Navigator.of(context).pushNamed(AddInjectionReminder.routeName);
-                    if(_formKey.currentState!.validate()){
-                      _formKey.currentState?.save();
-                      print('Injectionname');
-                    }
+                    // if(_formKey.currentState!.validate()){
+                    //   _formKey.currentState?.save();
+                    //   print('Injectionname');
 
                   },
                     child: const Text('Save'),
                     style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(120, 60),
+                        fixedSize: const Size(120, 50),
                         primary: Colors.blue,
                         shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
@@ -242,7 +267,24 @@ class  AddInjectionReminder extends StatelessWidget {
                         fontSize: 20,
                       )
                     ),
-                  )
+                  ),
+                  ElevatedButton(
+                      onPressed:() {
+                        _formKey.currentState!.reset();
+                      },
+                    child: const Text('Reset'),
+                    style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(120, 50),
+                        primary: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40),
+                        ),
+                        textStyle: const TextStyle(
+                          fontStyle: FontStyle.normal,
+                          fontSize: 20,
+                        )
+                    ),
+                  ),]),
                   // Container(color: Colors.amber, height: 300),
                   // Container(color: Colors.red, height: 300),
                   // Container(color: Colors.blueAccent, height: 300),
@@ -278,5 +320,17 @@ class  AddInjectionReminder extends StatelessWidget {
         ),
 
     );
+  }
+  // Update an existing list item
+  Future<void> _updateInjectionReminder(int id) async {
+    await SQLHelperInjectionReminder.updateInjectionReminder(
+      id,
+      _nameController.text,
+      _dosageController.text,
+        _quantityController.text,
+        _repeatController.text,
+        _timeController.text
+    );
+    _repeatController;
   }
 }
