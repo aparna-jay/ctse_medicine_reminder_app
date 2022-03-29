@@ -1,3 +1,4 @@
+import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:flutter/material.dart';
 
 import 'Sql_helper_pages/sql_helper_pillReminder.dart';
@@ -97,10 +98,12 @@ class _PillRemindersState extends State<PillReminders> {
               )),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: const Icon(Icons.add),
-      //   onPressed: () => _showForm(null),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context).pushNamed(AddPillReminder.routeName);
+          }
+      ),
     );
   }
 }

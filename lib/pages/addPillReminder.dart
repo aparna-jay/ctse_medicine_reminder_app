@@ -1,7 +1,10 @@
+import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
+
+import 'Sql_helper_pages/sql_helper_pillReminder.dart';
 
 class AddPillReminder extends StatefulWidget {
   static const String routeName = '/addPillReminder';
@@ -18,6 +21,19 @@ class AddPillReminder extends StatefulWidget {
 class _AddPillReminderState extends State<AddPillReminder> {
   final _formKey = GlobalKey<FormBuilderState>();
   late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _dosageController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController();
+  final TextEditingController _repeatController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
+
+  //Insert a new pill reminder to the database
+  Future<void> _addPillReminder() async {
+    await SQLHelperPillReminder.createPillReminder(
+        _nameController.text, _dosageController.text, _quantityController.text, _repeatController.text, _timeController.text);
+    //_refreshPillReminders();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +52,9 @@ class _AddPillReminderState extends State<AddPillReminder> {
             SizedBox(
               height: 50,
               width: 300,
-              child:TextFormField(),
+              child:TextFormField(
+                controller: _nameController,
+              ),
             )
                 ],
               ),
@@ -47,7 +65,9 @@ class _AddPillReminderState extends State<AddPillReminder> {
                   SizedBox(
                     height: 50,
                     width: 300,
-                    child:TextFormField(),
+                    child:TextFormField(
+                      controller: _dosageController,
+                    ),
                   )
                 ],
 
@@ -59,7 +79,37 @@ class _AddPillReminderState extends State<AddPillReminder> {
                   SizedBox(
                     height: 50,
                     width: 300,
-                    child:TextFormField(),
+                    child:TextFormField(
+                      controller: _quantityController,
+                    ),
+                  )
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Repeat"),
+                  SizedBox(
+                    height: 50,
+                    width: 300,
+                    child:TextFormField(
+                      controller: _repeatController,
+                    ),
+                  )
+
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Time"),
+                  SizedBox(
+                    height: 50,
+                    width: 300,
+                    child:TextFormField(
+                      controller: _timeController,
+                    ),
                   )
 
                 ],
@@ -105,10 +155,16 @@ class _AddPillReminderState extends State<AddPillReminder> {
                 children: <Widget>[
                 ElevatedButton(
                   child: Text('Submit'),
-                  onPressed:(){
-                    if(_formKey.currentState!.saveAndValidate()){
-                      print(_formKey.currentState!.value);
-                    }
+                  onPressed: () async {
+                    // Save new pill reminder
+
+                    await _addPillReminder();
+                    Navigator.of(context).pushNamed(PillReminders.routeName);
+                    // onPressed:(){
+                  //   if(_formKey.currentState!.saveAndValidate()){
+                  //     print(_formKey.currentState!.value);
+                  //   }
+
                   },
                 ),
                 ElevatedButton(
