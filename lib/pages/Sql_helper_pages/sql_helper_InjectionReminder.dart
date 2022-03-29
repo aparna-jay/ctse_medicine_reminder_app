@@ -12,7 +12,7 @@ class SQLHelperInjectionReminder {
       },
     );
   }
-
+  // Create new Injection reminder table
   static Future<void> createTables(sql.Database database) async {
     await database.execute("""CREATE TABLE injectionReminders(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -66,7 +66,7 @@ class SQLHelperInjectionReminder {
     return result;
   }
 
-  // Delete
+  // Delete Injection reminder by id
   static Future<void> deleteInjectionReminder(int id) async {
     final db = await SQLHelperInjectionReminder.db();
     try {
