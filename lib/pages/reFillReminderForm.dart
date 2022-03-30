@@ -242,6 +242,7 @@ class RefillReminderForm extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.all(25),
                 child: const Text("TODAY DATE AND TIME")),
+
             SizedBox(
               height: 100,
               child: CupertinoDatePicker(
@@ -263,18 +264,19 @@ class RefillReminderForm extends StatelessWidget {
                 },
               ),
             ),
+            Text(id),
             Container(
-
               margin: const EdgeInsets.all(25),
               child: OutlinedButton(
                 onPressed: ()async {
                   // if (_formKey.currentState!.validate()) {
-                  //  if (id = "0") {
+                   if (this.id == "0") {
                     await _addItem();
-                   // }
-                  // if (id != null) {
-                  //   await _updateItem(id);
-                  // }
+                   }
+                  if (this.id != null) {
+                    late int idupdate  = int.parse(id);
+                    await _updateItem(idupdate);
+                  }
                   // Navigator.of(context).pop();
                     Navigator.of(context).pushNamed(RefillReminder.routeName);
                 },
