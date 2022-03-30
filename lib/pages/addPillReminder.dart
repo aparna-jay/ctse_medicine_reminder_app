@@ -8,7 +8,9 @@ import 'Sql_helper_pages/sql_helper_pillReminder.dart';
 
 class AddPillReminder extends StatefulWidget {
   static const String routeName = '/addPillReminder';
-  const AddPillReminder({Key? key}) : super(key: key);
+  final int reminderId;
+  //const AddPillReminder({Key? key, this.reminderId}) : super(key: key);
+  const AddPillReminder(this.reminderId);
 
   @override
   _AddPillReminderState createState() => _AddPillReminderState();
@@ -33,6 +35,13 @@ class _AddPillReminderState extends State<AddPillReminder> {
     await SQLHelperPillReminder.createPillReminder(
         _nameController.text, _dosageController.text, _quantityController.text, _repeatController.text, _timeController.text);
     //_refreshPillReminders();
+  }
+
+  // Update an existing pill reminder
+  Future<void> _updatePillReminder(int id) async {
+    await SQLHelperPillReminder.updatePillReminder(
+        id,  _nameController.text, _dosageController.text, _quantityController.text, _repeatController.text, _timeController.text);
+   // _refreshJournals();
   }
 
   @override
@@ -157,15 +166,24 @@ class _AddPillReminderState extends State<AddPillReminder> {
                   child: Text('Submit'),
                   onPressed: () async {
                     // Save new pill reminder
-
-                    await _addPillReminder();
+                    if (widget.reminderId == 0) {
+    await _addPillReminder();
+    }
                     Navigator.of(context).pushNamed(PillReminders.routeName);
+
+    if (widget.reminderId != 0) {
+    await _updatePillReminder(widget.reminderId);
+    }
+
+    // Navigator.of(context).pop();
+    Navigator.of(context).pushNamed(PillReminders.routeName);
+    },
                     // onPressed:(){
                   //   if(_formKey.currentState!.saveAndValidate()){
                   //     print(_formKey.currentState!.value);
                   //   }
 
-                  },
+
                 ),
                 ElevatedButton(
                   child: Text('Reset'),

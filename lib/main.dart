@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       initialRoute: Home.routeName,
       routes: {
         Home.routeName: (context) => Home(),
-        AddPillReminder.routeName: (context) => AddPillReminder(),
+        AddPillReminder.routeName: (context) => AddPillReminder(0),
         RefillReminder.routeName:(context)=> RefillReminder(),
         AddInjectionReminder.routeName:(context)=> AddInjectionReminder(id: "0"),
         InjectionReminders.routeName:(context)=> InjectionReminders(),

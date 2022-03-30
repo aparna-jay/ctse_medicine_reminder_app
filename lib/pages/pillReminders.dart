@@ -45,12 +45,7 @@ class _PillRemindersState extends State<PillReminders> {
 //     _refreshPillReminders();
 //   }
 
-  // // Update an existing pill reminder
-  // Future<void> _updatePillReminder(int id) async {
-  //   await SQLHelperPillReminder.updatePillReminder(
-  //       id, _titleController.text, _descriptionController.text);
-  //   _refreshJournals();
-  // }
+
 
   // Delete a pill reminder
   void _deleteItem(int id) async {
@@ -84,7 +79,9 @@ class _PillRemindersState extends State<PillReminders> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.edit), onPressed: () {  },
+                      icon: const Icon(Icons.edit), onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddPillReminder(_pillReminders[index]['id'])));
+                    },
                       //onPressed: () => _showForm(_journals[index]['id']),
 
                     ),
