@@ -34,11 +34,11 @@ class  Home extends StatelessWidget {
                   child: Column(
                     children: [
                       IconButton(
-                        icon: Icon(FontAwesomeIcons.pills),
+                        icon: Icon(FontAwesomeIcons.pills, color:Colors.blue),
                         iconSize: 50,
                         onPressed: () { Navigator.of(context).pushNamed(PillReminders.routeName);},
                       ),
-                      Text("Pill Reminders", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+                      Text("Pill Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
                     ],
                   ),
                 ),
@@ -47,11 +47,11 @@ class  Home extends StatelessWidget {
                   child: Column(
                     children: [
                       IconButton(
-                        icon: Icon(FontAwesomeIcons.prescriptionBottle),
+                        icon: Icon(FontAwesomeIcons.prescriptionBottle, color:Colors.blue),
                         iconSize: 50,
                         onPressed: () { Navigator.of(context).pushNamed(RefillReminder.routeName);},
                       ),
-                      Text("Refill Reminders", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+                      Text("Refill Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
                     ],
                   ),
 
@@ -69,11 +69,11 @@ class  Home extends StatelessWidget {
                 child: Column(
                   children: [
                     IconButton(
-                      icon: Icon(FontAwesomeIcons.syringe),
+                      icon: Icon(FontAwesomeIcons.syringe, color:Colors.blue),
                       iconSize: 50,
                       onPressed: () { Navigator.of(context).pushNamed(InjectionReminders.routeName);},
                     ),
-                    Text("Injection Reminders", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text("Injection Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -82,43 +82,16 @@ class  Home extends StatelessWidget {
                 child: Column(
                   children: [
                     IconButton(
-                      icon: Icon(FontAwesomeIcons.appleAlt),
+                      icon: Icon(FontAwesomeIcons.appleAlt, color:Colors.blue),
                       iconSize: 50,
                       onPressed: () {},
                     ),
-                    Text("Health Habit Reminders", style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text("Health Habit Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
             ],
           ),
-
-          // ElevatedButton(onPressed: () {
-          //   Navigator.of(context).pushNamed(PillReminders.routeName);
-          // }, child: const Text('Pill Reminders'),
-          // ),
-          // const SizedBox(height:30
-          // ),
-          // ElevatedButton(onPressed: () {
-          //   Navigator.of(context).pushNamed(RefillReminder.routeName);
-          // }, child: const Text('Refill Reminders'),
-          // ),
-          // const SizedBox(height:30
-          // ),
-          // ElevatedButton(onPressed: () {  }, child: const Text('Health Habit Reminders'),
-          // ),
-          // const SizedBox(height:30
-          // ),
-          // ElevatedButton(onPressed: () {
-          //   Navigator.of(context).pushNamed(InjectionReminders.routeName);
-          // }, child: const Text('Injection Reminders'),
-          // ),
-          // const SizedBox(height:30
-          // ),
-          // ElevatedButton(onPressed: () {
-          //   Navigator.of(context).pushNamed(FeedbackForm.routeName);
-          // }, child: const Text('Feedback'),
-          // ),
         ],
       ),
     );

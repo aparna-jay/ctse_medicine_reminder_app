@@ -20,7 +20,7 @@ class SideNav extends StatelessWidget {
             child: Center(
               child: Text(
                 'Menu',
-                style: TextStyle(color: Colors.black, fontSize: 25),
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
             ),
           //   decoration: BoxDecoration(
