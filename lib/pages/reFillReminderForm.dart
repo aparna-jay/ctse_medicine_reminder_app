@@ -117,7 +117,6 @@ class RefillReminderForm extends StatelessWidget {
                     },
                   ),
                 ),
-                Text(id),
                 Container(
                   margin: const EdgeInsets.all(25),
                   child: OutlinedButton(

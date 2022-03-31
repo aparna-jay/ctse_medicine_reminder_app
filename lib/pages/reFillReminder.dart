@@ -62,7 +62,7 @@ class _RefillReminderState extends State<RefillReminder> {
                 color: Colors.indigo,
                 margin: const EdgeInsets.all(15),
                 child: ListTile(
-                    title: Text('Title : ' + RefillReminderList[index]['name'],
+                    title: Text(RefillReminderList[index]['name'],
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -73,14 +73,14 @@ class _RefillReminderState extends State<RefillReminder> {
                           "\n" +
                           ' time : ' +
                           RefillReminderList[index]['time'],
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white70),
                     ),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
                         children: [
                           IconButton(
-                              icon: const Icon(Icons.edit),
+                              icon: const Icon(Icons.edit , color: Colors.green),
                               onPressed: () => {
                                     // _showForm(RefillReminderList[index]['id']),
                                     Navigator.push(
@@ -95,7 +95,7 @@ class _RefillReminderState extends State<RefillReminder> {
                                     )
                                   }),
                           IconButton(
-                              icon: const Icon(Icons.delete),
+                              icon: const Icon(Icons.delete , color: Colors.redAccent),
                               onPressed: () => {
                                     _deleteItem(
                                         RefillReminderList[index]['id']),
