@@ -31,7 +31,7 @@ class SideNav extends StatelessWidget {
            ),
           ListTile(
             leading: Icon(FontAwesomeIcons.pills),
-            title: Text('PIll Reminder'),
+            title: Text('Pill Reminder'),
             onTap: () => {Navigator.of(context).pushNamed(PillReminders.routeName)},
           ),
           ListTile(
