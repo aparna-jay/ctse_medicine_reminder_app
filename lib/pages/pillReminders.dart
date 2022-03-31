@@ -31,27 +31,11 @@ class _PillRemindersState extends State<PillReminders> {
     _refreshPillReminders(); // Loading the pill reminders when the app starts
   }
 
-  // final TextEditingController _nameController = TextEditingController();
-  // final TextEditingController _dosageController = TextEditingController();
-  // final TextEditingController _quantityController = TextEditingController();
-  // final TextEditingController _repeatController = TextEditingController();
-  // final TextEditingController _timeController = TextEditingController();
-
-
-// Insert a new pill reminder to the database
-//   Future<void> _addPillReminder() async {
-//     await SQLHelperPillReminder.createPillReminder(
-//         _nameController.text, _dosageController.text, _quantityController.text, _repeatController.text, _timeController.text);
-//     _refreshPillReminders();
-//   }
-
-
-
   // Delete a pill reminder
   void _deleteItem(int id) async {
     await SQLHelperPillReminder.deletePillReminder(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Successfully deleted a journal!'),
+      content: Text('Successfully deleted a pill reminder!'),
     ));
     _refreshPillReminders();
   }
@@ -69,11 +53,11 @@ class _PillRemindersState extends State<PillReminders> {
           : ListView.builder(
         itemCount: _pillReminders.length,
         itemBuilder: (context, index) => Card(
-          color: Colors.orange[200],
+          color: Colors.blue[200],
           margin: const EdgeInsets.all(15),
           child: ListTile(
               title: Text(_pillReminders[index]['name']),
-              subtitle: Text(_pillReminders[index]['dosage']),
+              subtitle: Text(_pillReminders[index]['time']),
               trailing: SizedBox(
                 width: 100,
                 child: Row(
@@ -82,8 +66,6 @@ class _PillRemindersState extends State<PillReminders> {
                       icon: const Icon(Icons.edit), onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddPillReminder(_pillReminders[index]['id'])));
                     },
-                      //onPressed: () => _showForm(_journals[index]['id']),
-
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),
