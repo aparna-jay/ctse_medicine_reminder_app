@@ -1,7 +1,7 @@
 import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
-import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
+import 'package:ctse_medicine_reminder_app/pages/sideNav.dart';
 import 'package:flutter/material.dart';
 
 import 'AddInjectionReminder.dart';
@@ -14,6 +14,7 @@ class  Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: SideNav(),
       appBar: AppBar(
         title: const Text("Home"),
       ),
@@ -22,6 +23,13 @@ class  Home extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(width:double.infinity,
+          ),
+
+          IconButton(
+            icon: Icon(Icons.add_shopping_cart),
+            //Image.asset("assets/images/refil.jpg"),
+            iconSize: 50,
+            onPressed: () {},
           ),
           ElevatedButton(onPressed: () {
             Navigator.of(context).pushNamed(PillReminders.routeName);
