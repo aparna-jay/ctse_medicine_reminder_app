@@ -20,26 +20,44 @@ class AddPillReminder extends StatefulWidget {
 
 class _AddPillReminderState extends State<AddPillReminder> {
   late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _dosageController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
-  final TextEditingController _repeatController = TextEditingController();
   bool? repeat = false;
+  String repeatValue = "false";
+  List<Map<String, dynamic>> _pillReminder = [];
 
   //Insert a new pill reminder to the database
   Future<void> _addPillReminder() async {
     await SQLHelperPillReminder.createPillReminder(
-        _nameController.text, _dosageController.text, _quantityController.text, _repeatController.text, formattedTime);
+        _nameController.text, _dosageController.text, _quantityController.text, repeatValue, formattedTime);
     //_refreshPillReminders();
   }
 
   // Update an existing pill reminder
   Future<void> _updatePillReminder(int id) async {
     await SQLHelperPillReminder.updatePillReminder(
-        id,  _nameController.text, _dosageController.text, _quantityController.text, _repeatController.text, formattedTime);
-   // _refreshJournals();
+        id,  _nameController.text, _dosageController.text, _quantityController.text, repeatValue, formattedTime);
   }
+
+  void _getPillReminder(int id) async {
+    final data = await SQLHelperPillReminder.getPillReminder(id);
+    setState(() {
+      _pillReminder = data;
+      print(_pillReminder);
+      //_nameController.text =  _pillReminder['name'];
+      //_dosageController.text, _quantityController.text, repeatValue, formattedTime
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.reminderId != 0) {
+      _getPillReminder(widget.reminderId);
+    } // Get the pill reminder for update
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +65,16 @@ class _AddPillReminderState extends State<AddPillReminder> {
       appBar: AppBar(title: const Text("Add Pill Reminder")),
       body:  SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               children:<Widget>[
-                const Text("Add Pill Reminder" , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 20),),
+                const Text("Add Pill Reminder" , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 25),),
                 const SizedBox(
                   height: 10,
                 ),
             TextField(
               controller: _nameController,
-                decoration: const InputDecoration(
+            decoration: const InputDecoration(
                     border:OutlineInputBorder(
                         borderSide:BorderSide(color: Colors.limeAccent)
                     ),
@@ -90,26 +108,14 @@ class _AddPillReminderState extends State<AddPillReminder> {
                 const SizedBox(
                   height: 30,
                 ),
-                TextField(
-                  controller: _repeatController,
-                  decoration: const InputDecoration(
-                      border:OutlineInputBorder(
-                          borderSide:BorderSide(color: Colors.limeAccent)
-                      ),
-                      labelText: ('Repeat')
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width - 16,
+                      height: 45,
+                      width: MediaQuery.of(context).size.width - 32,
                       child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.dateAndTime,
+                        mode: CupertinoDatePickerMode.time,
                         minimumDate:  DateTime.now(),
                         initialDateTime: DateTime.now(),
                         onDateTimeChanged: (DateTime newDateTime) {
@@ -120,46 +126,26 @@ class _AddPillReminderState extends State<AddPillReminder> {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    const Text("Repeat"),
-                    SizedBox(
-                      height: 50,
-                      width: 300,
-                      child: FormBuilderDropdown(
-                                      name: 'dropdown',
-                                      items: ['Hourly', 'Daily', 'Weekly']
-                                          .map((repeat) =>
-                                              DropdownMenuItem(value: repeat, child: Text("$repeat")))
-                                          .toList(),
-
-                                      // value: field.value,
-                                      // onChanged: (value) {
-                                      //       field.didChange(value);
-                                      //       _serviceType = value;
-                                      //}
-                                    ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-            Checkbox(
-                value: repeat,
-                onChanged: (bool? value){
-                  setState(() {
-                    repeat = value;
-                  });
-                }),
+            Row(
+              children: [
+                Checkbox(
+                    value: repeat,
+                    onChanged: (bool? value){
+                      setState(() {
+                        repeat = value;
+                        repeatValue = repeat.toString();
+                      });
+                    }),
+                Text("Repeat Daily"),
+              ],
+            ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                   ElevatedButton(
-                    child: const Text('Submit'),
+                    child: const Text('Submit', style: TextStyle(fontSize: 18)),
                     onPressed: () async {
                       // Save new pill reminder
                       if (widget.reminderId == 0) {
@@ -168,6 +154,7 @@ class _AddPillReminderState extends State<AddPillReminder> {
                       Navigator.of(context).pushNamed(PillReminders.routeName);
 
                       if (widget.reminderId != 0) {
+
                         await _updatePillReminder(widget.reminderId);
                       }
                       // Navigator.of(context).pop();

@@ -28,9 +28,9 @@ class  Home extends StatelessWidget {
 
           Center(
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  width: 200,
                   child: Column(
                     children: [
                       IconButton(
@@ -43,7 +43,6 @@ class  Home extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  width: 200,
                   child: Column(
                     children: [
                       IconButton(
@@ -60,12 +59,12 @@ class  Home extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 60,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                width: 200,
                 child: Column(
                   children: [
                     IconButton(
@@ -78,7 +77,6 @@ class  Home extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 200,
                 child: Column(
                   children: [
                     IconButton(

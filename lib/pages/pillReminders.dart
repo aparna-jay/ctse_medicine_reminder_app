@@ -57,7 +57,7 @@ class _PillRemindersState extends State<PillReminders> {
           margin: const EdgeInsets.all(15),
           child: ListTile(
               title: Text(_pillReminders[index]['name']),
-              subtitle: Text(_pillReminders[index]['time']),
+              subtitle: Text(_pillReminders[index]['dosage']),
               trailing: SizedBox(
                 width: 100,
                 child: Row(
