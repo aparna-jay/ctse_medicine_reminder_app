@@ -31,22 +31,22 @@ class SideNav extends StatelessWidget {
            ),
           ListTile(
             leading: Icon(FontAwesomeIcons.pills),
-            title: Text('Pill Reminder'),
+            title: Text('Pill Reminders'),
             onTap: () => {Navigator.of(context).pushNamed(PillReminders.routeName)},
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.prescriptionBottle),
-            title: Text('Refill Reminder'),
+            title: Text('Refill Reminders'),
             onTap: () => {Navigator.of(context).pushNamed(RefillReminder.routeName)},
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.syringe),
-            title: Text('Injection Reminder'),
+            title: Text('Injection Reminders'),
             onTap: () => {Navigator.of(context).pushNamed(InjectionReminders.routeName)},
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.appleAlt),
-            title: Text('Health Habit Reminder'),
+            title: Text('Health Habit Reminders'),
             onTap: () => {},
           ),
           ListTile(
