@@ -1,6 +1,7 @@
 import 'package:ctse_medicine_reminder_app/pages/AddInjectionReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
+import 'package:ctse_medicine_reminder_app/pages/addHealthHabitReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/feedbackForm.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
