@@ -48,7 +48,7 @@ class SideNav extends StatelessWidget {
           ListTile(
             leading: Icon(FontAwesomeIcons.appleAlt),
             title: Text('Health Habit Reminders'),
-            onTap: () => {},
+            onTap: () => {Navigator.of(context).pushNamed(HealthHabitReminders.routeName)},
           ),
           ListTile(
             leading: Icon(Icons.border_color),
