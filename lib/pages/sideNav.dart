@@ -1,6 +1,7 @@
 import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
+import 'package:ctse_medicine_reminder_app/pages/healthHabitReminders.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -47,7 +48,7 @@ class SideNav extends StatelessWidget {
           ListTile(
             leading: Icon(FontAwesomeIcons.appleAlt),
             title: Text('Health Habit Reminders'),
-            onTap: () => {},
+            onTap: () => {Navigator.of(context).pushNamed(HealthHabitReminders.routeName)},
           ),
           ListTile(
             leading: Icon(Icons.border_color),
