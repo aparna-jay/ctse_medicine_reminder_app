@@ -65,25 +65,25 @@ class _AddPillReminderState extends State<AddPillReminder> {
       appBar: AppBar(title: const Text("Add Pill Reminder")),
       body:  SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
               children:<Widget>[
                 const Text("Add Pill Reminder" , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 25),),
                 const SizedBox(
                   height: 10,
                 ),
-            TextField(
-              controller: _nameController,
-            decoration: const InputDecoration(
-                    border:OutlineInputBorder(
-                        borderSide:BorderSide(color: Colors.limeAccent)
-                    ),
-                    labelText: ('Enter Pill Name')
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                      border:OutlineInputBorder(
+                          borderSide:BorderSide(color: Colors.limeAccent)
+                      ),
+                      labelText: ('Enter Pill Name')
+                  ),
                 ),
-            ),
-            const SizedBox(
-                height: 30,
-            ),
+                const SizedBox(
+                  height: 30,
+                ),
                 TextField(
                   controller: _dosageController,
                   decoration: const InputDecoration(
@@ -128,44 +128,44 @@ class _AddPillReminderState extends State<AddPillReminder> {
                 const SizedBox(
                   height: 20,
                 ),
-            Row(
-              children: [
-                Checkbox(
-                    value: repeat,
-                    onChanged: (bool? value){
-                      setState(() {
-                        repeat = value;
-                        repeatValue = repeat.toString();
-                      });
-                    }),
-                Text("Repeat Daily"),
-              ],
-            ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                  ElevatedButton(
-                    child: const Text('Submit', style: TextStyle(fontSize: 18)),
-                    onPressed: () async {
-                      // Save new pill reminder
-                      if (widget.reminderId == 0) {
-                        await _addPillReminder();
-                      }
-                      Navigator.of(context).pushNamed(PillReminders.routeName);
+                  children: [
+                    Checkbox(
+                        value: repeat,
+                        onChanged: (bool? value){
+                          setState(() {
+                            repeat = value;
+                            repeatValue = repeat.toString();
+                          });
+                        }),
+                    Text("Repeat Daily"),
+                  ],
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      ElevatedButton(
+                        child: const Text('Submit', style: TextStyle(fontSize: 18)),
+                        onPressed: () async {
+                          // Save new pill reminder
+                          if (widget.reminderId == 0) {
+                            await _addPillReminder();
+                          }
+                          Navigator.of(context).pushNamed(PillReminders.routeName);
 
-                      if (widget.reminderId != 0) {
+                          if (widget.reminderId != 0) {
 
-                        await _updatePillReminder(widget.reminderId);
-                      }
-                      // Navigator.of(context).pop();
-                      Navigator.of(context).pushNamed(PillReminders.routeName);
-                      },
-                  ),
+                            await _updatePillReminder(widget.reminderId);
+                          }
+                          // Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed(PillReminders.routeName);
+                        },
+                      ),
+                    ]
+                ),
               ]
-            ),
-            ]
           ),
-          ),
+        ),
       ),
     );
   }
