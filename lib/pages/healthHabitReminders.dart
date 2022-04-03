@@ -18,7 +18,7 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
   bool _isLoading = true;
   // This function is used to fetch all data from the database
   void _refreshHealthHabitReminders() async {
-    final data = await SQLHelperHealthHabitReminder.getHealthHabitReminders();
+    final data = await SQLHelperHealthHabitReminder.gethealthHabitReminders();
     setState(() {
       _healthHabitReminders = data;
       _isLoading = false;
@@ -33,7 +33,7 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
 
   // Delete a healthHabit reminder
   void _deleteItem(int id) async {
-    await SQLHelperHealthHabitReminder.deleteHealthHabitReminder(id);
+    await SQLHelperHealthHabitReminder.deletehealthHabitReminder(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Successfully deleted a healthHabit reminder!'),
     ));

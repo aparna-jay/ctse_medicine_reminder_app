@@ -24,7 +24,7 @@ class SQLHelperHealthHabitReminder {
 
   // Create new healthHabit reminder
   static Future<int> createhealthHabitReminder(String name, String repeat) async {
-    final db = await SQLHelperhealthHabitReminder.db();
+    final db = await SQLHelperHealthHabitReminder.db();
 
     final data = {'name': name, 'repeat': repeat};
     final id = await db.insert('healthHabitReminders', data,
@@ -34,20 +34,20 @@ class SQLHelperHealthHabitReminder {
 
   // Read all healthHabit reminders
   static Future<List<Map<String, dynamic>>> gethealthHabitReminders() async {
-    final db = await SQLHelperhealthHabitReminder.db();
+    final db = await SQLHelperHealthHabitReminder.db();
     return db.query('healthHabitReminders', orderBy: "id");
   }
 
   // Read a single healthHabit reminder by id
   static Future<List<Map<String, dynamic>>> gethealthHabitReminder(int id) async {
-    final db = await SQLHelperhealthHabitReminder.db();
+    final db = await SQLHelperHealthHabitReminder.db();
     return db.query('healthHabitReminders', where: "id = ?", whereArgs: [id], limit: 1);
   }
 
   // Update a healthHabit reminder by id
   static Future<int> updatehealthHabitReminder(
       int id, String name, String repeat) async {
-    final db = await SQLHelperhealthHabitReminder.db();
+    final db = await SQLHelperHealthHabitReminder.db();
 
     final data = {
       'name': name,
@@ -62,7 +62,7 @@ class SQLHelperHealthHabitReminder {
 
   // Delete healthHabit Reminder
   static Future<void> deletehealthHabitReminder(int id) async {
-    final db = await SQLHelperhealthHabitReminder.db();
+    final db = await SQLHelperHealthHabitReminder.db();
     try {
       await db.delete("healthHabitReminders", where: "id = ?", whereArgs: [id]);
     } catch (err) {

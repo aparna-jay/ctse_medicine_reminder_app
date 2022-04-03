@@ -18,7 +18,8 @@ class AddHealthHabitReminder extends StatefulWidget {
 //https://github.com/syntacops/flutter_formbuilder_example/blob/master/lib/main.dart
 
 
-class _AddHealthHabitReminderState extends State<AddHealthHabitReminder> {late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
+class _AddHealthHabitReminderState extends State<AddHealthHabitReminder> {
+  late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
 final TextEditingController _nameController = TextEditingController();
 bool? repeat = false;
 String repeatValue = "false";
@@ -26,19 +27,19 @@ List<Map<String, dynamic>> _healthHabitReminder = [];
 
 //Insert a new HealthHabit reminder to the database
 Future<void> _addHealthHabitReminder() async {
-  await SQLHelperHealthHabitReminder.createHealthHabitReminder(
-      _nameController.text, repeatValue, formattedTime);
+  await SQLHelperHealthHabitReminder.createhealthHabitReminder(
+      _nameController.text, repeatValue);
   //_refreshHealthHabitReminders();
 }
 
 // Update an existing pill reminder
 Future<void> _updateHealthHabitReminder(int id) async {
-  await SQLHelperHealthHabitReminder.updateHealthHabitReminder(
+  await SQLHelperHealthHabitReminder.updatehealthHabitReminder(
       id,  _nameController.text, formattedTime);
 }
 
 void _getHealthHabitReminder(int id) async {
-  final data = await SQLHelperHealthHabitReminder.getHealthHabitReminder(id);
+  final data = await SQLHelperHealthHabitReminder.gethealthHabitReminder(id);
   setState(() {
     _healthHabitReminder = data;
     print(_healthHabitReminder);
