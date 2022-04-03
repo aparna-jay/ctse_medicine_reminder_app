@@ -1,6 +1,7 @@
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'Sql_helper_pages/sql_helper_pillReminder.dart';
@@ -26,6 +27,9 @@ class _AddPillReminderState extends State<AddPillReminder> {
   bool? repeat = false;
   String repeatValue = "false";
   List<Map<String, dynamic>> _pillReminder = [];
+
+  String title = "Add Pill Reminder";
+  String btn_lbl = "Add Reminder";
 
   //Insert a new pill reminder to the database
   Future<void> _addPillReminder() async {
@@ -54,21 +58,24 @@ class _AddPillReminderState extends State<AddPillReminder> {
   void initState() {
     super.initState();
     if (widget.reminderId != 0) {
+      title = "Update Pill Reminder";
+      btn_lbl = "Update";
       _getPillReminder(widget.reminderId);
-    } // Get the pill reminder for update
+    }
+  // Get the pill reminder for update
   }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Pill Reminder")),
+      appBar: AppBar(title: Text(title)),
       body:  SingleChildScrollView(
         child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children:<Widget>[
-                const Text("Add Pill Reminder" , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 25),),
+                Text(title , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 25),),
                 const SizedBox(
                   height: 10,
                 ),
@@ -90,8 +97,9 @@ class _AddPillReminderState extends State<AddPillReminder> {
                       border:OutlineInputBorder(
                           borderSide:BorderSide(color: Colors.limeAccent)
                       ),
-                      labelText: ('Enter Dosage')
+                      labelText: ('Enter Dosage (mg)')
                   ),
+                    keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
                   height: 30,
@@ -104,6 +112,7 @@ class _AddPillReminderState extends State<AddPillReminder> {
                       ),
                       labelText: ('Quantity')
                   ),
+                    keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
                   height: 30,
@@ -112,7 +121,7 @@ class _AddPillReminderState extends State<AddPillReminder> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      height: 45,
+                      height: 65,
                       width: MediaQuery.of(context).size.width - 32,
                       child: CupertinoDatePicker(
                         mode: CupertinoDatePickerMode.time,
@@ -121,6 +130,9 @@ class _AddPillReminderState extends State<AddPillReminder> {
                         onDateTimeChanged: (DateTime newDateTime) {
                           formattedTime = DateFormat('kk:mm').format(newDateTime);
                         },
+                        // dateTimePickerTextStyle: TextStyle(
+                        //   fontSize: 16,
+                        // ),
                       ),
                     ),
                   ],
@@ -145,11 +157,12 @@ class _AddPillReminderState extends State<AddPillReminder> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                   ElevatedButton(
-                    child: const Text('Submit', style: TextStyle(fontSize: 18)),
+                    child:  Text(btn_lbl, style: TextStyle(fontSize: 18)),
                     onPressed: () async {
                       // Save new pill reminder
                       if (widget.reminderId == 0) {
                         await _addPillReminder();
+                        //FlutterAlarmClock.createAlarm(3, 59);
                       }
                       Navigator.of(context).pushNamed(PillReminders.routeName);
 
