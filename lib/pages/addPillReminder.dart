@@ -48,9 +48,11 @@ class _AddPillReminderState extends State<AddPillReminder> {
     final data = await SQLHelperPillReminder.getPillReminder(id);
     setState(() {
       _pillReminder = data;
-      print(_pillReminder);
-      //_nameController.text =  _pillReminder['name'];
-      //_dosageController.text, _quantityController.text, repeatValue, formattedTime
+      _nameController.text = data[0]['name'];
+      _dosageController.text = data[0]['dosage'];
+      _quantityController.text = data[0]['quantity'];
+      repeatValue = data[0]['repeat'];
+      formattedTime  = data[0]['time'];
     });
   }
 
