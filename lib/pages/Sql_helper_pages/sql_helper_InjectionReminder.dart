@@ -36,7 +36,7 @@ class SQLHelperInjectionReminder {
   }
 
   // Read all Injection reminders
-  static Future<List<Map<String, dynamic>>> getInjectionReminders(int id) async {
+  static Future<List<Map<String, dynamic>>> getInjectionReminders() async {
     final db = await SQLHelperInjectionReminder.db();
     return db.query('injectionReminders', orderBy: "id");
   }
@@ -72,7 +72,7 @@ class SQLHelperInjectionReminder {
     try {
       await db.delete("injectionReminders", where: "id = ?", whereArgs: [id]);
     } catch (err) {
-      debugPrint("Something went wrong when deleting an item: $err");
+      debugPrint("Something went wrong when deleting an Injection Reminder: $err");
     }
   }
 }
