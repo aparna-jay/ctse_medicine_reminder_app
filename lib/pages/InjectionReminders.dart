@@ -8,28 +8,8 @@ class  InjectionReminders extends StatefulWidget {
 
   @override
   _InjectionRemindersState createState() => _InjectionRemindersState();
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     appBar: AppBar(
-//       title: const Text("Injection Reminders"),
-//     ),
-//     body:Column(
-//       children: const [
-//         Text("New Injection Reminder",
-//         ),
-//
-//       ],
-//     ),
-//     floatingActionButton: FloatingActionButton(
-//       // onPressed: () => setState(() => _count++),
-//       tooltip: 'Increment Counter',
-//       onPressed: () {  },
-//       child: const Icon(Icons.add),
-//     ),
-//   );
-// }
 }
+
 
 class _InjectionRemindersState extends State<InjectionReminders>{
   // All journals
@@ -51,11 +31,11 @@ class _InjectionRemindersState extends State<InjectionReminders>{
     _refreshInjectionReminders(); // Loading the injection reminders when the app starts
   }
 
-  // Delete a pill reminder
+  // Delete a injection reminder
   void _deleteItem(int id) async {
     await SQLHelperInjectionReminder.deleteInjectionReminder(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Successfully deleted a reminder!'),
+      content: Text('Successfully deleted an Injection Reminder!'),
     ));
     _refreshInjectionReminders();
   }
@@ -84,18 +64,8 @@ class _InjectionRemindersState extends State<InjectionReminders>{
                   children: [
                     IconButton(
                       icon: const Icon(Icons.edit), onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-
-                          builder: (context) => AddInjectionReminder(
-                              id: _injectionReminders[index]['id'].toString()
-                          ),
-                        ),
-                      );
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddInjectionReminder(_injectionReminders[index]['id'])));
                     },
-                      //onPressed: () => _showForm(_journals[index]['id']),
-
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete),

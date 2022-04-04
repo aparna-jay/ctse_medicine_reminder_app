@@ -72,7 +72,7 @@ class SQLHelperInjectionReminder {
     try {
       await db.delete("injectionReminders", where: "id = ?", whereArgs: [id]);
     } catch (err) {
-      debugPrint("Something went wrong when deleting an item: $err");
+      debugPrint("Something went wrong when deleting an Injection Reminder: $err");
     }
   }
 }
