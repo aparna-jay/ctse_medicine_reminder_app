@@ -24,7 +24,6 @@ class _AddPillReminderState extends State<AddPillReminder> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _dosageController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
-  bool? repeat = false;
   String repeatValue = "false";
   List<Map<String, dynamic>> _pillReminder = [];
 
@@ -54,6 +53,15 @@ class _AddPillReminderState extends State<AddPillReminder> {
       repeatValue = data[0]['repeat'];
       formattedTime  = data[0]['time'];
     });
+  }
+
+  bool? _getRepeatValue(String value){
+    if(value == 'true'){
+      return true;
+    }
+    else if(value == 'false'){
+      return false;
+    }
   }
 
   @override
@@ -128,7 +136,7 @@ class _AddPillReminderState extends State<AddPillReminder> {
                       child: CupertinoDatePicker(
                         mode: CupertinoDatePickerMode.time,
                         minimumDate:  DateTime.now(),
-                        initialDateTime: DateTime.now(),
+                        initialDateTime:  DateTime.now(),
                         onDateTimeChanged: (DateTime newDateTime) {
                           formattedTime = DateFormat('kk:mm').format(newDateTime);
                         },
@@ -145,11 +153,10 @@ class _AddPillReminderState extends State<AddPillReminder> {
                 Row(
                   children: [
                     Checkbox(
-                        value: repeat,
+                        value: _getRepeatValue(repeatValue),
                         onChanged: (bool? value){
                           setState(() {
-                            repeat = value;
-                            repeatValue = repeat.toString();
+                            repeatValue = value.toString();
                           });
                         }),
                     Text("Repeat Daily"),
