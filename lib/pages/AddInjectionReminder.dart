@@ -1,7 +1,7 @@
 import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+// import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'Sql_helper_pages/sql_helper_InjectionReminder.dart';
 
@@ -31,8 +31,7 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
   String btn_lbl = "Add Reminder";
 
   //Insert a new Injection reminder to the database
-  //Insert a new pill reminder to the database
-  Future<void> _addPillReminder() async {
+  Future<void> _addInjectionReminder() async {
     await SQLHelperInjectionReminder.createInjectionReminder(
         _nameController.text, _dosageController.text, _quantityController.text, repeatValue, formattedTime);
   }
@@ -44,8 +43,8 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
   }
 
 // Read an Injection Reminder
-  void _getInjectionReminder(int id) async {
-    final data = await SQLHelperInjectionReminder.getInjectionReminders(id);
+  void _getInjectionReminders(int id) async {
+    final data = await SQLHelperInjectionReminder.getInjectionReminder(id);
     setState(() {
       _injectionReminder = data;
       _nameController.text = data[0]['injectionName'];
@@ -72,7 +71,7 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
     if (widget.reminderId != 0) {
       title = "Update Injection Reminder";
       btn_lbl = "Update";
-      _getInjectionReminder(widget.reminderId);
+      _getInjectionReminders(widget.reminderId);
     }
     // Get the injection reminder for update
   }
@@ -172,7 +171,7 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
                         onPressed: () async {
                           // Save new pill reminder
                           if (widget.reminderId == 0) {
-                            await _addPillReminder();
+                            await _addInjectionReminder();
                             //FlutterAlarmClock.createAlarm(3, 59);
                           }
                           Navigator.of(context).pushNamed(InjectionReminders.routeName);
@@ -458,4 +457,4 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
 //     );
 //     _repeatController;
 //   }
-// }
+}
