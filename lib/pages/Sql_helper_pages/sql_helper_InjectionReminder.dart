@@ -36,7 +36,7 @@ class SQLHelperInjectionReminder {
   }
 
   // Read all Injection reminders
-  static Future<List<Map<String, dynamic>>> getInjectionReminders() async {
+  static Future<List<Map<String, dynamic>>> getInjectionReminders(int id) async {
     final db = await SQLHelperInjectionReminder.db();
     return db.query('injectionReminders', orderBy: "id");
   }
