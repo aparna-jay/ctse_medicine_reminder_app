@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
   }
 
   _navigatetohome()async{
-    await Future.delayed(Duration(milliseconds: 5000), () {});
+    await Future.delayed(Duration(milliseconds: 7000), () {});
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
   }
 
@@ -37,12 +37,11 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
+      body: Center(
+        child:
               Lottie.network(
-              'https://assets4.lottiefiles.com/packages/lf20_otmfyizb.json'),
-              Image.network('')
-            ],
+              'https://assets3.lottiefiles.com/packages/lf20_6woeee8k.json'),
+
       ),
     );
 
