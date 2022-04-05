@@ -70,7 +70,7 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
     super.initState();
     if (widget.reminderId != 0) {
       title = "Update Injection Reminder";
-      btn_lbl = "Update";
+      btn_lbl = "Update Reminder";
       _getInjectionReminders(widget.reminderId);
     }
     // Get the injection reminder for update
