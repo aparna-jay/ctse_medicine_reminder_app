@@ -5,54 +5,71 @@ import 'package:intl/intl.dart';
 
 import 'Sql_helper_pages/SQL_helper_ReFillReminder.dart';
 
-class RefillReminderForm extends StatelessWidget {
+class RefillReminderForm extends StatefulWidget {
   static const String routeName = '/RefillReminderForm ';
   const RefillReminderForm({Key? key, required this.id}) : super(key: key);
   final String id;
 
-  static final TextEditingController _nameController = TextEditingController();
-  static final TextEditingController _doseController = TextEditingController();
-  static final TextEditingController _QuantityController = TextEditingController();
-  static late String formattedDate =  DateFormat('yyyy-MM-dd' ).format(DateTime.now());
-  static late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
 
-  static List<Map<String, dynamic  >> RefillReminderList = [];
-  static bool isLoading = true;
+
+  @override
+  State<RefillReminderForm> createState() => _RefillReminderFormState();
+}
+
+class _RefillReminderFormState extends State<RefillReminderForm> {
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _doseController = TextEditingController();
+  final TextEditingController _QuantityController = TextEditingController();
+  late String formattedDate =  DateFormat('yyyy-MM-dd' ).format(DateTime.now());
+  late String formattedTime = DateFormat('HH:mm').format(DateTime.now());
+
+  String title = "Add Refill Reminder";
+  String btn_lbl = "Add Reminder";
+
+  List<Map<String, dynamic  >> _RefillReminderList = [];
+  bool isLoading = true;
   // fetch all data from the database
-  static void _refreshList() async {
+  void _refreshList() async {
     final data = await SQL_helper_ReFillReminder.getItems();
-    // setState(() {
-      RefillReminderList = data;
-      isLoading = false;
-    // });
+    setState(() {
+    _RefillReminderList = data;
+    isLoading = false;
+    });
   }
-
-  static void _showForm(String? id) async {
-    late int id_Update  = int.parse(id!);
-    if (id != null) {
+  @override
+  void initState() {
+    super.initState();
+    _refreshList();
+    showForm();
+    if (widget.id != '0') {
+      title = "Update Refill Reminder";
+      btn_lbl = "Update";
+      // _getInjectionReminders(widget.reminderId);
+    }// Loading the diary when the app starts
+  }
+  void clearForm() async {
+    _nameController.text = '';
+    _doseController.text = '';
+    _QuantityController.text = '';
+  }
+  void showForm() async {
+    late int id_Update  = int.parse(this.widget.id);
+    final data = await SQL_helper_ReFillReminder.getItem(id_Update);
+    if (id_Update != null) {
+      print(id_Update);
       final refillList =
-      RefillReminderList.firstWhere((element) => element['id'] == id_Update);
+      _RefillReminderList.firstWhere((data) => data['id'] == id_Update);
       _nameController.text = refillList['name'];
       _doseController.text = refillList['dose'];
       _QuantityController.text = refillList['quantity'];
     }
   }
-
-  static void clearForm() async {
-    _nameController.text = '';
-    _doseController.text = '';
-    _QuantityController.text = '';
-  }
-
-  static void initState(String? id) {
-    _showForm(id);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Refill Reminder Form"),
+        title: Text(title),
       ),
       body:Padding(
         padding: const EdgeInsets.all(8.0),
@@ -60,9 +77,18 @@ class RefillReminderForm extends StatelessWidget {
           child: Form(
             child: Column(
               children: [
-                const SizedBox(height: 12),
+                const Text(
+                  "Refill Reminder Form",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      height: 2,
+                      fontSize: 30,
+                      color: Colors.blue),
+                ),
+                const SizedBox(height: 35),
+
                 TextFormField(
-                  controller: _nameController,
+                  controller:_nameController,
                   decoration: const InputDecoration(
                       border:OutlineInputBorder(
                           borderSide:BorderSide(color: Colors.limeAccent)
@@ -72,7 +98,7 @@ class RefillReminderForm extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
-                  controller: _doseController,
+                  controller:_doseController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                       border:OutlineInputBorder(
@@ -83,7 +109,7 @@ class RefillReminderForm extends StatelessWidget {
                 ),
                 const SizedBox(height:12),
                 TextFormField(
-                  controller: _QuantityController,
+                  controller:_QuantityController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                       border:OutlineInputBorder(
@@ -95,7 +121,6 @@ class RefillReminderForm extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.all(25),
                     child: const Text("TODAY DATE AND TIME")),
-
                 SizedBox(
                   height: 100,
                   child: CupertinoDatePicker(
@@ -106,7 +131,6 @@ class RefillReminderForm extends StatelessWidget {
                     },
                   ),
                 ),
-
                 SizedBox(
                   height: 100,
                   child: CupertinoDatePicker(
@@ -122,12 +146,12 @@ class RefillReminderForm extends StatelessWidget {
                   child: OutlinedButton(
                     onPressed: ()async {
                       // if (_formKey.currentState!.validate()) {
-                       if (this.id == "0") {
+                       if (this.widget.id == "0") {
                         await _addItem();
                         clearForm();
                        }
-                      if (this.id != null) {
-                        late int idupdate  = int.parse(id);
+                      if (this.widget.id != null) {
+                        late int idupdate  = int.parse(widget.id);
                         await _updateItem(idupdate);
                         clearForm();
                       }
@@ -135,7 +159,7 @@ class RefillReminderForm extends StatelessWidget {
                         Navigator.of(context).pushNamed(RefillReminder.routeName);
                     },
                     child:
-                    const Text("Add Reminder",
+                    Text(btn_lbl,
                       // style: TextStyle(fontSizb -e: 20.0)
                     ),
                   ),
@@ -156,7 +180,6 @@ class RefillReminderForm extends StatelessWidget {
     );
     _refreshList();
   }
-
   // Update an existing list item
   Future<void> _updateItem(int id) async {
     await SQL_helper_ReFillReminder.updateItem(
