@@ -2,6 +2,7 @@ import 'package:ctse_medicine_reminder_app/pages/addPillReminder.dart';
 import 'package:flutter/material.dart';
 
 import 'Sql_helper_pages/sql_helper_pillReminder.dart';
+import 'home.dart';
 
 class PillReminders extends StatefulWidget {
   static const String routeName = '/pillReminders';
@@ -77,46 +78,60 @@ class _PillRemindersState extends State<PillReminders> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pill Reminders'),
-      ),
-      body: _isLoading
-          ? const Center(
-        child: CircularProgressIndicator(),
-      )
-          : ListView.builder(
-        itemCount: _pillReminders.length,
-        itemBuilder: (context, index) => Card(
-          color: Colors.blue[200],
-          margin: const EdgeInsets.all(15),
-          child: ListTile(
-              title: Text(_pillReminders[index]['name']),
-              subtitle: Text(_pillReminders[index]['dosage']),
-              trailing: SizedBox(
-                width: 100,
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.edit), onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddPillReminder(_pillReminders[index]['id'])));
-                    },
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.delete),
-                      onPressed: () =>
-                          showAlertDialog(context, _pillReminders[index]['id']),
-                    ),
-                  ],
-                ),
-              )),
+    String backNavEnabled = "true";
+    return WillPopScope(
+
+      onWillPop: () async {
+        if(backNavEnabled == "true"){
+          Navigator.of(context).pushNamed(Home.routeName);
+          return true;
+        }
+        else {
+          return false;
+        }
+
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Pill Reminders'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-          onPressed: () {
-            Navigator.of(context).pushNamed(AddPillReminder.routeName);
-          }
+        body: _isLoading
+            ? const Center(
+          child: CircularProgressIndicator(),
+        )
+            : ListView.builder(
+          itemCount: _pillReminders.length,
+          itemBuilder: (context, index) => Card(
+            color: Colors.blue[200],
+            margin: const EdgeInsets.all(15),
+            child: ListTile(
+                title: Text(_pillReminders[index]['name']),
+                subtitle: Text(_pillReminders[index]['dosage']),
+                trailing: SizedBox(
+                  width: 100,
+                  child: Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.edit), onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddPillReminder(_pillReminders[index]['id'])));
+                      },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete),
+                        onPressed: () =>
+                            showAlertDialog(context, _pillReminders[index]['id']),
+                      ),
+                    ],
+                  ),
+                )),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddPillReminder.routeName);
+            }
+        ),
       ),
     );
   }

@@ -82,118 +82,130 @@ class _AddPillReminderState extends State<AddPillReminder> {
   // Get the pill reminder for update
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(title)),
-      body:  SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-              children:<Widget>[
-                Text(title , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 25),),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                      border:OutlineInputBorder(
-                          borderSide:BorderSide(color: Colors.limeAccent)
-                      ),
-                      labelText: ('Enter Pill Name')
+    String backNavEnabled = "true";
+    return WillPopScope(
+      onWillPop: () async {
+        if(backNavEnabled == "true"){
+          Navigator.of(context).pushNamed(PillReminders.routeName);
+          return true;
+        }
+        else {
+          return false;
+        }
+
+      },
+      child: Scaffold(
+        appBar: AppBar(title: Text(title)),
+        body:  SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+                children:<Widget>[
+                  Text(title , style: TextStyle(fontWeight: FontWeight.bold, height: 3, fontSize: 25),),
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                TextField(
-                  controller: _dosageController,
-                  decoration: const InputDecoration(
-                      border:OutlineInputBorder(
-                          borderSide:BorderSide(color: Colors.limeAccent)
-                      ),
-                      labelText: ('Enter Dosage (mg)')
-                  ),
-                    keyboardType: TextInputType.number,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                TextField(
-                  controller: _quantityController,
-                  decoration: const InputDecoration(
-                      border:OutlineInputBorder(
-                          borderSide:BorderSide(color: Colors.limeAccent)
-                      ),
-                      labelText: ('Quantity')
-                  ),
-                    keyboardType: TextInputType.number,
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(
-                      height: 65,
-                      width: MediaQuery.of(context).size.width - 32,
-                      child: CupertinoDatePicker(
-                        mode: CupertinoDatePickerMode.time,
-                        minimumDate:  DateTime.now(),
-                        initialDateTime:  DateTime.now(),
-                        onDateTimeChanged: (DateTime newDateTime) {
-                          formattedTime = DateFormat('kk:mm').format(newDateTime);
-                        },
-                        // dateTimePickerTextStyle: TextStyle(
-                        //   fontSize: 16,
-                        // ),
-                      ),
+                  TextField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                        border:OutlineInputBorder(
+                            borderSide:BorderSide(color: Colors.limeAccent)
+                        ),
+                        labelText: ('Enter Pill Name')
                     ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: [
-                    Checkbox(
-                        value: _getRepeatValue(repeatValue),
-                        onChanged: (bool? value){
-                          setState(() {
-                            repeatValue = value.toString();
-                          });
-                        }),
-                    Text("Repeat Daily"),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                  ElevatedButton(
-                    child:  Text(btn_lbl, style: TextStyle(fontSize: 18)),
-                    onPressed: () async {
-                      // Save new pill reminder
-                      if (widget.reminderId == 0) {
-                        await _addPillReminder();
-                        //FlutterAlarmClock.createAlarm(3, 59);
-                      }
-                      Navigator.of(context).pushNamed(PillReminders.routeName);
-
-                      if (widget.reminderId != 0) {
-
-                        await _updatePillReminder(widget.reminderId);
-                      }
-                      Navigator.of(context).pushNamed(PillReminders.routeName);
-                      },
                   ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  TextField(
+                    controller: _dosageController,
+                    decoration: const InputDecoration(
+                        border:OutlineInputBorder(
+                            borderSide:BorderSide(color: Colors.limeAccent)
+                        ),
+                        labelText: ('Enter Dosage (mg)')
+                    ),
+                      keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  TextField(
+                    controller: _quantityController,
+                    decoration: const InputDecoration(
+                        border:OutlineInputBorder(
+                            borderSide:BorderSide(color: Colors.limeAccent)
+                        ),
+                        labelText: ('Quantity')
+                    ),
+                      keyboardType: TextInputType.number,
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: 65,
+                        width: MediaQuery.of(context).size.width - 32,
+                        child: CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.time,
+                          minimumDate:  DateTime.now(),
+                          initialDateTime:  DateTime.now(),
+                          onDateTimeChanged: (DateTime newDateTime) {
+                            formattedTime = DateFormat('kk:mm').format(newDateTime);
+                          },
+                          // dateTimePickerTextStyle: TextStyle(
+                          //   fontSize: 16,
+                          // ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      Checkbox(
+                          value: _getRepeatValue(repeatValue),
+                          onChanged: (bool? value){
+                            setState(() {
+                              repeatValue = value.toString();
+                            });
+                          }),
+                      Text("Repeat Daily"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                    ElevatedButton(
+                      child:  Text(btn_lbl, style: TextStyle(fontSize: 18)),
+                      onPressed: () async {
+                        // Save new pill reminder
+                        if (widget.reminderId == 0) {
+                          await _addPillReminder();
+                          //FlutterAlarmClock.createAlarm(3, 59);
+                        }
+                        Navigator.of(context).pushNamed(PillReminders.routeName);
+
+                        if (widget.reminderId != 0) {
+
+                          await _updatePillReminder(widget.reminderId);
+                        }
+                        Navigator.of(context).pushNamed(PillReminders.routeName);
+                        },
+                    ),
+                ]
+              ),
               ]
             ),
-            ]
-          ),
-          ),
+            ),
+        ),
       ),
     );
   }
