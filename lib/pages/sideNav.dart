@@ -20,7 +20,7 @@ class SideNav extends StatelessWidget {
           const DrawerHeader(
             child: Center(
               child: Text(
-                'Menu',
+                'MedReminder',
                 style: TextStyle(color: Colors.black, fontSize: 18),
               ),
             ),
