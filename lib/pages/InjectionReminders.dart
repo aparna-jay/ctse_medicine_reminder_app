@@ -2,6 +2,7 @@ import 'package:ctse_medicine_reminder_app/pages/AddInjectionReminder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'Sql_helper_pages/sql_helper_InjectionReminder.dart';
+import 'package:flutter/src/material/colors.dart';
 
 class  InjectionReminders extends StatefulWidget {
   static const String routeName = '/InjectionReminders';
@@ -88,15 +89,16 @@ class _InjectionRemindersState extends State<InjectionReminders>{
           : ListView.builder(
         itemCount: _injectionReminders.length,
         itemBuilder: (context, index) => Card(
-          color: Colors.lightBlue[200],
+          color: Colors.blue[200],
           margin: const EdgeInsets.all(15),
           child: ListTile(
-              title: Text(_injectionReminders[index]['injectionName']),
-              subtitle: Text("\n" + 'Dosage(mg) : ' +_injectionReminders[index]['dosage'] +
+              title: Text(_injectionReminders[index]['injectionName'], style: TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.bold),),
+
+              subtitle: Text("\n" + 'Dosage(ml) : ' +_injectionReminders[index]['dosage'] +
                   "\n\n" +
                 'Time : ' +
                   _injectionReminders[index]['time'],
-              ),
+                  style: TextStyle(color: Colors.black54, fontSize: 15)),
               trailing: SizedBox(
                 width: 100,
                 child: Row(
@@ -107,7 +109,7 @@ class _InjectionRemindersState extends State<InjectionReminders>{
                     },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.redAccent),
+                      icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () =>
                           showAlertDialog(context, _injectionReminders[index]['id']),
                     ),
