@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:intl/intl.dart';
 import 'Sql_helper_pages/sql_helper_InjectionReminder.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class  AddInjectionReminder extends StatefulWidget {
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -90,13 +91,14 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
                 const SizedBox(
                   height: 10,
                 ),
-                TextField(
+                TextFormField(
                   controller: _nameController,
-                  decoration: const InputDecoration(
+                    validator: RequiredValidator(errorText: 'Enter a valid Injection Name'),
+                    decoration: const InputDecoration(
                       border:OutlineInputBorder(
                           borderSide:BorderSide(color: Colors.limeAccent)
                       ),
-                      labelText: ('Enter Injection Name')
+                      labelText: ('Enter Injection Name'),
                   ),
                 ),
                 const SizedBox(
