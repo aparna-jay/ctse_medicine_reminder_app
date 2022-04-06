@@ -20,20 +20,6 @@ class _SplashState extends State<Splash> {
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: Center(
-  //       child: Container(
-  //         child: Text('Splash Screen', style: TextStyle(
-  //           fontSize: 24,
-  //           fontWeight: FontWeight.bold
-  //         ),),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
