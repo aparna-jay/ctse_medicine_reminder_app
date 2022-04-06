@@ -25,12 +25,6 @@ class _PillRemindersState extends State<PillReminders> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _refreshPillReminders(); // Loading the pill reminders when the app starts
-  }
-
   // Delete a pill reminder
   void _deleteItem(int id) async {
     await SQLHelperPillReminder.deletePillReminder(id);
@@ -39,6 +33,47 @@ class _PillRemindersState extends State<PillReminders> {
     ));
     _refreshPillReminders();
   }
+
+  showAlertDialog(BuildContext context, int id) {
+    // set up the buttons
+    Widget continueButton = ElevatedButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+        _deleteItem(id);
+      },
+    );
+    Widget cancelButton = ElevatedButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirm Delete"),
+      content: Text("Do you want to delete this pill reminder?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refreshPillReminders(); // Loading the pill reminders when the app starts
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +105,7 @@ class _PillRemindersState extends State<PillReminders> {
                     IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () =>
-                          _deleteItem(_pillReminders[index]['id']),
+                          showAlertDialog(context, _pillReminders[index]['id']),
                     ),
                   ],
                 ),

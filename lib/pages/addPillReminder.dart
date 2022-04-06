@@ -17,9 +17,11 @@ class AddPillReminder extends StatefulWidget {
 
 //Form builder tutorial https://www.youtube.com/watch?v=7FBELQq808M
 //https://github.com/syntacops/flutter_formbuilder_example/blob/master/lib/main.dart
+//Alert dialog resource - https://medium.com/multiverse-software/alert-dialog-and-confirmation-dialog-in-flutter-8d8c160f4095
 
 
 class _AddPillReminderState extends State<AddPillReminder> {
+
   late String formattedTime = DateFormat('kk:mm').format(DateTime.now());
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _dosageController = TextEditingController();
@@ -34,13 +36,18 @@ class _AddPillReminderState extends State<AddPillReminder> {
   Future<void> _addPillReminder() async {
     await SQLHelperPillReminder.createPillReminder(
         _nameController.text, _dosageController.text, _quantityController.text, repeatValue, formattedTime);
-    //_refreshPillReminders();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Successfully added a pill reminder!'),
+    ));
   }
 
   // Update an existing pill reminder
   Future<void> _updatePillReminder(int id) async {
     await SQLHelperPillReminder.updatePillReminder(
         id,  _nameController.text, _dosageController.text, _quantityController.text, repeatValue, formattedTime);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Successfully updated pill reminder!'),
+    ));
   }
 
   void _getPillReminder(int id) async {
@@ -179,7 +186,6 @@ class _AddPillReminderState extends State<AddPillReminder> {
 
                         await _updatePillReminder(widget.reminderId);
                       }
-                      // Navigator.of(context).pop();
                       Navigator.of(context).pushNamed(PillReminders.routeName);
                       },
                   ),
