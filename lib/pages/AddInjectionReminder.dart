@@ -110,7 +110,7 @@ class _AddInjectionReminderState extends State<AddInjectionReminder> {
                       border:OutlineInputBorder(
                           borderSide:BorderSide(color: Colors.limeAccent)
                       ),
-                      labelText: ('Enter Dosage (mg)')
+                      labelText: ('Enter Dosage (ml)')
                   ),
                   keyboardType: TextInputType.number,
                 ),
