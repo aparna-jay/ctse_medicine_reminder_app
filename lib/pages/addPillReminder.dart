@@ -153,7 +153,6 @@ class _AddPillReminderState extends State<AddPillReminder> {
                         width: MediaQuery.of(context).size.width - 32,
                         child: CupertinoDatePicker(
                           mode: CupertinoDatePickerMode.time,
-                          minimumDate:  DateTime.now(),
                           initialDateTime:  DateTime.now(),
                           onDateTimeChanged: (DateTime newDateTime) {
                             formattedTime = DateFormat('kk:mm').format(newDateTime);
