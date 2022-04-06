@@ -12,11 +12,11 @@ class  InjectionReminders extends StatefulWidget {
 
 
 class _InjectionRemindersState extends State<InjectionReminders>{
-  // All journals
+  // All reminders
   List<Map<String, dynamic>> _injectionReminders = [];
 
   bool _isLoading = true;
-  // This function is used to fetch all data from the database
+  // _refreshInjectionReminders() is used to fetch all data from the database
   void _refreshInjectionReminders() async {
     final data = await SQLHelperInjectionReminder.getInjectionReminders();
     setState(() {
@@ -31,13 +31,47 @@ class _InjectionRemindersState extends State<InjectionReminders>{
     _refreshInjectionReminders(); // Loading the injection reminders when the app starts
   }
 
-  // Delete a injection reminder
+  // Delete an injection reminder
   void _deleteItem(int id) async {
     await SQLHelperInjectionReminder.deleteInjectionReminder(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Successfully deleted an Injection Reminder!'),
     ));
     _refreshInjectionReminders();
+  }
+
+  //alert dialog
+  showAlertDialog(BuildContext context, int id) {
+    // set up the buttons
+    Widget continueButton = ElevatedButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+        _deleteItem(id);
+      },
+    );
+    Widget cancelButton = ElevatedButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirm Delete"),
+      content: Text("Are you sure you want to delete this Injection reminder?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -70,7 +104,7 @@ class _InjectionRemindersState extends State<InjectionReminders>{
                     IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () =>
-                          _deleteItem(_injectionReminders[index]['id']),
+                          showAlertDialog(context, _injectionReminders[index]['id']),
                     ),
                   ],
                 ),
