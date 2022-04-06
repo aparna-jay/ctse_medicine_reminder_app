@@ -18,41 +18,36 @@ class SideNav extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           const DrawerHeader(
-            child: Center(
-              child: Text(
-                'MedReminder',
-                style: TextStyle(color: Colors.black, fontSize: 18),
-              ),
+            child:  SizedBox(
             ),
-          //   decoration: BoxDecoration(
-          //       color: Colors.green,
-          //       image: DecorationImage(
-          //           fit: BoxFit.fill,
-          //           image: AssetImage('assets/images/cover.jpg'))),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/logo.png'))),
            ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.pills),
-            title: Text('Pill Reminders'),
+            leading: Icon(FontAwesomeIcons.pills, color:Colors.blue),
+            title: Text('Pill Reminders', style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(PillReminders.routeName)},
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.prescriptionBottle),
-            title: Text('Refill Reminders'),
+            leading: Icon(FontAwesomeIcons.prescriptionBottle, color:Colors.blue),
+            title: Text('Refill Reminders', style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(RefillReminder.routeName)},
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.syringe),
-            title: Text('Injection Reminders'),
+            leading: Icon(FontAwesomeIcons.syringe, color:Colors.blue),
+            title: Text('Injection Reminders',  style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(InjectionReminders.routeName)},
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.appleAlt),
-            title: Text('Health Habit Reminders'),
+            leading: Icon(FontAwesomeIcons.appleAlt, color:Colors.blue),
+            title: Text('Health Habit Reminders',  style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(HealthHabitReminders.routeName)},
           ),
           ListTile(
-            leading: Icon(Icons.border_color),
-            title: Text('Feedback'),
+            leading: Icon(Icons.border_color, color:Colors.blue),
+            title: Text('Feedback', style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(FeedbackForm.routeName)},
           ),
         ],

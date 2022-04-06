@@ -24,10 +24,10 @@ class  Home extends StatelessWidget {
         children: [
           const SizedBox(
             width:double.infinity,
-            height: 80,
+            height: 100,
           ),
           Center(child: Text("MedReminder", style: TextStyle( fontSize: 50, fontWeight: FontWeight.bold,
-              foreground: Paint()..style = PaintingStyle.stroke..strokeWidth = 5..color = Colors.blue!
+              foreground: Paint()..style = PaintingStyle.stroke..strokeWidth = 5..color = Colors.blue
           ))),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
