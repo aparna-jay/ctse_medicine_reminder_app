@@ -6,13 +6,13 @@ import 'home.dart';
 class Aboutus extends StatelessWidget {
   static const String routeName = '/aboutus ';
 
-  static final TextEditingController _nameController = TextEditingController();
-  static final TextEditingController _feedController = TextEditingController();
+  // static final TextEditingController _nameController = TextEditingController();
+  // static final TextEditingController _feedController = TextEditingController();
 
-  static void clear() {
-    _nameController.text = '';
-    _feedController.text = '';
-  }
+  // static void clear() {
+  //   _nameController.text = '';
+  //   _feedController.text = '';
+  // }
 
   const Aboutus({Key? key}) : super(key: key);
 
@@ -29,48 +29,56 @@ class Aboutus extends StatelessWidget {
             child: Column(
               children: [
                 const Text(
-                  "Add your feedback",
+                  "About Us",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      height: 2,
-                      fontSize: 30,
+                      height: 1,
+                      fontSize: 27,
                       color: Colors.blue),
                 ),
-                const SizedBox(height: 35),
-                TextField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.limeAccent)),
-                      labelText: ('Your Email address')),
+                const Text(
+                  "Email - medReminder@gmail.com",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      height: 1,
+                      fontSize: 20,
+                      color: Colors.grey),
                 ),
-                const SizedBox(height: 10),
-                Card(
-                    color: Colors.white70,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        controller: _feedController,
-                        maxLines: 8,
-                        decoration: const InputDecoration.collapsed(
-                            hintText: "Enter your text here"),
-                      ),
-                    )),
-                const SizedBox(height: 10),
-                RatingBar.builder(
-                  minRating: 1,
-                  itemBuilder: (context, _) =>
-                  const Icon(Icons.star, color: Colors.amberAccent),
-                  onRatingUpdate: (double value) {},
+                const Text(
+                  "Phone - 011-2335522",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      height: 1,
+                      fontSize: 20,
+                      color: Colors.grey),
                 ),
+                const Text(
+                  "Address - No.7,Kandy Road,Kandy",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      height: 1,
+                      fontSize: 20,
+                      color: Colors.grey),
+                ),
+                const Text(
+                  "Fax - 011-255669988",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      height: 1,
+                      fontSize: 20,
+                      color: Colors.grey),
+                ),
+
+
+
                 Container(
                   margin: const EdgeInsets.all(25),
                   child: OutlinedButton(
                     onPressed: () {
-                      clear();
+
                       Navigator.of(context).pushNamed(Home.routeName);
                     },
-                    child: const Text("Add FeedBack",
+                    child: const Text("Thank You",
                         style: TextStyle(fontSize: 20.0)),
                   ),
                 ),
