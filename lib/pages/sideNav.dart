@@ -52,7 +52,7 @@ class SideNav extends StatelessWidget {
             onTap: () => {Navigator.of(context).pushNamed(FeedbackForm.routeName)},
           ),
           ListTile(
-            leading: Icon(Icons.border_color, color:Colors.blue),
+            leading: Icon(Icons.info, color:Colors.blue),
             title: Text('About Us', style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(Aboutus.routeName)},
           ),
