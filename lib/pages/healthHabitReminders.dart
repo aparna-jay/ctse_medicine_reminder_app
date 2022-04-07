@@ -53,7 +53,7 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
           : ListView.builder(
         itemCount: _healthHabitReminders.length,
         itemBuilder: (context, index) => Card(
-          color: Colors.blue[200],
+          color: Colors.grey[200],
           margin: const EdgeInsets.all(15),
           child: ListTile(
               title: Text(_healthHabitReminders[index]['name']),
@@ -63,12 +63,12 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.edit), onPressed: () {
+                      icon: const Icon(Icons.edit, color: Colors.blueGrey), onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddHealthHabitReminder(_healthHabitReminders[index]['id'])));
                     },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete),
+                      icon: const Icon(Icons.delete, color: Colors.redAccent),
                       onPressed: () =>
                           _deleteItem(_healthHabitReminders[index]['id']),
                     ),

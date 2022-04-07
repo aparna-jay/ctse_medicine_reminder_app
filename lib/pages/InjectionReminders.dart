@@ -89,7 +89,7 @@ class _InjectionRemindersState extends State<InjectionReminders>{
           : ListView.builder(
         itemCount: _injectionReminders.length,
         itemBuilder: (context, index) => Card(
-          color: Colors.blue[200],
+          color: Colors.grey[200],
           margin: const EdgeInsets.all(15),
           child: ListTile(
               title: Text(_injectionReminders[index]['injectionName'], style: TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.bold),),
@@ -104,12 +104,12 @@ class _InjectionRemindersState extends State<InjectionReminders>{
                 child: Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.green), onPressed: () {
+                      icon: const Icon(Icons.edit, color: Colors.blueGrey), onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddInjectionReminder(_injectionReminders[index]['id'])));
                     },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete, color: Colors.red),
+                      icon: const Icon(Icons.delete, color: Colors.redAccent),
                       onPressed: () =>
                           showAlertDialog(context, _injectionReminders[index]['id']),
                     ),
