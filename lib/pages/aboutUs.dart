@@ -20,7 +20,7 @@ class Aboutus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("About Us"),
+        title: const Text("About Us"  ),
       ),
       body: Center(
         child: Padding(
@@ -52,7 +52,7 @@ class Aboutus extends StatelessWidget {
                     color: Colors.white70,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: TextField(
+                      child: TextField( enabled:false,
                         maxLines: 23,
                         decoration: const InputDecoration.collapsed(
                             hintText: ""
@@ -75,7 +75,9 @@ class Aboutus extends StatelessWidget {
                                 "\n"
                                 "Med Reminder is an ad-free,easy-access,offline, "
                                 "pill reminder and medication tracker.Available on Apple and Android devices."
-                                "",),
+                                "",hintStyle: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey)),
                       ),
                     )),
                 const SizedBox(height: 5),

@@ -29,7 +29,8 @@ class  Home extends StatelessWidget {
               height: 100,
             ),
             Center(child: Text("MedReminder", style: TextStyle( fontSize: 50, fontWeight: FontWeight.bold,
-                foreground: Paint()..style = PaintingStyle.stroke..strokeWidth = 5..color = Colors.blueGrey
+                // foreground: Paint()..style = PaintingStyle.stroke..strokeWidth = 5..
+               color: Colors.blueGrey
             ))),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
