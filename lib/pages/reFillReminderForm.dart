@@ -77,12 +77,13 @@ class _RefillReminderFormState extends State<RefillReminderForm> {
             child: Column(
               children: [
                 const Text(
-                  "Refill Reminder Form",
+                  "Add Refill Reminder",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       height: 2,
-                      fontSize: 30,
-                      color: Colors.blue),
+                      fontSize: 25,
+                      // color: Colors.blue
+                  ),
                 ),
                 const SizedBox(height: 35),
 
@@ -119,7 +120,7 @@ class _RefillReminderFormState extends State<RefillReminderForm> {
                 ),
                 Container(
                     margin: const EdgeInsets.all(25),
-                    child: const Text("TODAY DATE AND TIME")),
+                    child: const Text("Select Date and Time")),
                 SizedBox(
                   height: 100,
                   child: CupertinoDatePicker(
@@ -142,7 +143,7 @@ class _RefillReminderFormState extends State<RefillReminderForm> {
                 ),
                 Container(
                   margin: const EdgeInsets.all(25),
-                  child: OutlinedButton(
+                  child: ElevatedButton(
                     onPressed: ()async {
                       // if (_formKey.currentState!.validate()) {
                        if (this.widget.id == "0") {
