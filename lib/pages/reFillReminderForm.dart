@@ -45,8 +45,7 @@ class _RefillReminderFormState extends State<RefillReminderForm> {
     if (widget.id != '0') {
       title = "Update Refill Reminder";
       btn_lbl = "Update";
-      // _getInjectionReminders(widget.reminderId);
-    }// Loading the diary when the app starts
+    }// Loading the data when the app starts
   }
   void clearForm() async {
     _nameController.text = '';
