@@ -34,7 +34,8 @@ class Aboutus extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       height: 1,
                       fontSize: 25,
-                      color: Colors.blue),
+                      // color: Colors.blue
+                  ),
                 ),
                 const SizedBox(height: 5),
                 // const Text(
@@ -112,7 +113,7 @@ class Aboutus extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.all(22),
-                  child: OutlinedButton(
+                  child: ElevatedButton(
                     onPressed: () {
 
                       Navigator.of(context).pushNamed(Home.routeName);
