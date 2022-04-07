@@ -34,7 +34,8 @@ class FeedbackForm extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       height: 2,
                       fontSize: 30,
-                      color: Colors.blue),
+                      // color: Colors.blue
+                  ),
                 ),
                 const SizedBox(height: 35),
                 TextField(
@@ -65,7 +66,7 @@ class FeedbackForm extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.all(25),
-                  child: OutlinedButton(
+                  child: ElevatedButton(
                     onPressed: () {
                       clear();
                       Navigator.of(context).pushNamed(Home.routeName);
