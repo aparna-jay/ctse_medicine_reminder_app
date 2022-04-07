@@ -42,6 +42,9 @@ class _InjectionRemindersState extends State<InjectionReminders>{
     _refreshInjectionReminders();
   }
 
+  //resources
+  //https://medium.com/multiverse-software/alert-dialog-and-confirmation-dialog-in-flutter-8d8c160f4095
+
   //alert dialog
   showAlertDialog(BuildContext context, int id) {
     // set up the buttons
