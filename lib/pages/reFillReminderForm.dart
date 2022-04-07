@@ -10,8 +10,6 @@ class RefillReminderForm extends StatefulWidget {
   const RefillReminderForm({Key? key, required this.id}) : super(key: key);
   final String id;
 
-
-
   @override
   State<RefillReminderForm> createState() => _RefillReminderFormState();
 }

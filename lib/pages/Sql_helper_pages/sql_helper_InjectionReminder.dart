@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart' as sql;
 
+
+//https://www.kindacode.com/article/flutter-sqlite/
 class SQLHelperInjectionReminder {
 
   static Future<sql.Database> db() async {
