@@ -78,20 +78,7 @@ class _PillRemindersState extends State<PillReminders> {
 
   @override
   Widget build(BuildContext context) {
-    String backNavEnabled = "true";
-    return WillPopScope(
-
-      onWillPop: () async {
-        if(backNavEnabled == "true"){
-          Navigator.of(context).pushNamed(Home.routeName);
-          return true;
-        }
-        else {
-          return false;
-        }
-
-      },
-      child: Scaffold(
+      return Scaffold(
         appBar: AppBar(
           title: const Text('Pill Reminders'),
         ),
@@ -132,7 +119,6 @@ class _PillRemindersState extends State<PillReminders> {
               Navigator.of(context).pushNamed(AddPillReminder.routeName);
             }
         ),
-      ),
-    );
+      );
   }
 }

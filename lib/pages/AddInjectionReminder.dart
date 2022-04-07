@@ -5,6 +5,11 @@ import 'package:intl/intl.dart';
 import 'Sql_helper_pages/sql_helper_InjectionReminder.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
+//resources
+//Form builder tutorial https://www.youtube.com/watch?v=7FBELQq808M
+//https://github.com/syntacops/flutter_formbuilder_example/blob/master/lib/main.dart
+//Alert dialog resource - https://medium.com/multiverse-software/alert-dialog-and-confirmation-dialog-in-flutter-8d8c160f4095
+
 class  AddInjectionReminder extends StatefulWidget {
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static const String routeName = '/addInjectionReminder';
