@@ -17,16 +17,17 @@ class SQLHelperHealthHabitReminder {
     await database.execute("""CREATE TABLE healthHabitReminders(
         id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         name TEXT,
-        repeat TEXT
+        repeat TEXT,
+        time TEXT
       )
       """);
   }
 
   // Create new healthHabit reminder
-  static Future<int> createhealthHabitReminder(String name, String repeat) async {
+  static Future<int> createhealthHabitReminder(String name, String repeat, String time) async {
     final db = await SQLHelperHealthHabitReminder.db();
 
-    final data = {'name': name, 'repeat': repeat};
+    final data = {'name': name, 'repeat': repeat, 'time': time};
     final id = await db.insert('healthHabitReminders', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;
@@ -46,12 +47,13 @@ class SQLHelperHealthHabitReminder {
 
   // Update a healthHabit reminder by id
   static Future<int> updatehealthHabitReminder(
-      int id, String name, String repeat) async {
+      int id, String name, String repeat, String time) async {
     final db = await SQLHelperHealthHabitReminder.db();
 
     final data = {
       'name': name,
       'repeat': repeat,
+      'time': time,
       //'createdAt': DateTime.now().toString()
     };
 

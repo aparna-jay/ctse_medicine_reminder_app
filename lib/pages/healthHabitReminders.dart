@@ -35,7 +35,7 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
   void _deleteItem(int id) async {
     await SQLHelperHealthHabitReminder.deletehealthHabitReminder(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Successfully deleted a healthHabit reminder!'),
+      content: Text('Successfully deleted a Health Habit reminder!'),
     ));
     _refreshHealthHabitReminders();
   }
@@ -44,7 +44,7 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HealthHabit Reminders'),
+        title: const Text('Health Habit Reminders'),
       ),
       body: _isLoading
           ? const Center(
@@ -57,7 +57,7 @@ class _HealthHabitRemindersState extends State<HealthHabitReminders> {
           margin: const EdgeInsets.all(15),
           child: ListTile(
               title: Text(_healthHabitReminders[index]['name']),
-              subtitle: Text(_healthHabitReminders[index]['dosage']),
+              // subtitle: Text(_healthHabitReminders[index]['dosage']),
               trailing: SizedBox(
                 width: 100,
                 child: Row(

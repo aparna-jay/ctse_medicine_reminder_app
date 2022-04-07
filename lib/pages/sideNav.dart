@@ -1,4 +1,5 @@
 import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
+import 'package:ctse_medicine_reminder_app/pages/aboutUs.dart';
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/healthHabitReminders.dart';
@@ -49,6 +50,11 @@ class SideNav extends StatelessWidget {
             leading: Icon(Icons.border_color, color:Colors.blue),
             title: Text('Feedback', style: TextStyle(fontSize: 18, color: Colors.grey)),
             onTap: () => {Navigator.of(context).pushNamed(FeedbackForm.routeName)},
+          ),
+          ListTile(
+            leading: Icon(Icons.border_color),
+            title: Text('About Us'),
+            onTap: () => {Navigator.of(context).pushNamed(Aboutus.routeName)},
           ),
         ],
       ),
