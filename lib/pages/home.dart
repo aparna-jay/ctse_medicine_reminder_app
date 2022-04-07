@@ -1,5 +1,6 @@
 import 'package:ctse_medicine_reminder_app/pages/InjectionReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/pillReminders.dart';
+import 'package:ctse_medicine_reminder_app/pages/healthHabitReminders.dart';
 import 'package:ctse_medicine_reminder_app/pages/reFillReminder.dart';
 import 'package:ctse_medicine_reminder_app/pages/sideNav.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class  Home extends StatelessWidget {
                     IconButton(
                       icon: Icon(FontAwesomeIcons.appleAlt, color:Colors.blue),
                       iconSize: 50,
-                      onPressed: () {},
+                      onPressed: () {Navigator.of(context).pushNamed(HealthHabitReminders.routeName);},
                     ),
                     Text("Health Habit Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
                   ],
