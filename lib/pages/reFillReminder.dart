@@ -42,6 +42,38 @@ class _RefillReminderState extends State<RefillReminder> {
     ));
     _refreshList();
   }
+  showAlertDialog(BuildContext context, int id) {
+    // set up the buttons
+    Widget continueButton = ElevatedButton(
+      child: Text("Yes"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+        _deleteItem(id);
+      },
+    );
+    Widget cancelButton = ElevatedButton(
+      child: Text("No"),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("Confirm Delete"),
+      content: Text("Do you want to delete this pill reminder?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +129,7 @@ class _RefillReminderState extends State<RefillReminder> {
                           IconButton(
                               icon: const Icon(Icons.delete , color: Colors.redAccent),
                               onPressed: () => {
-                                    _deleteItem(
+                                showAlertDialog(context,
                                         RefillReminderList[index]['id']),
                                   }),
                         ],
