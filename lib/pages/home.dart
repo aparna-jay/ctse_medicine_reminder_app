@@ -29,7 +29,7 @@ class  Home extends StatelessWidget {
               height: 100,
             ),
             Center(child: Text("MedReminder", style: TextStyle( fontSize: 50, fontWeight: FontWeight.bold,
-                foreground: Paint()..style = PaintingStyle.stroke..strokeWidth = 5..color = Colors.blue
+                foreground: Paint()..style = PaintingStyle.stroke..strokeWidth = 5..color = Colors.blueGrey
             ))),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -52,11 +52,11 @@ class  Home extends StatelessWidget {
                         child: Column(
                           children: [
                             IconButton(
-                              icon: Icon(FontAwesomeIcons.pills, color:Colors.blue),
+                              icon: Icon(FontAwesomeIcons.pills, color:Colors.orange),
                               iconSize: 50,
                               onPressed: () { Navigator.of(context).pushNamed(PillReminders.routeName);},
                             ),
-                            Text("Pill Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
+                            Text("Pill Reminders", style: TextStyle(color: Colors.blueGrey, fontSize: 18, fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),
@@ -64,11 +64,11 @@ class  Home extends StatelessWidget {
                         child: Column(
                           children: [
                             IconButton(
-                              icon: Icon(FontAwesomeIcons.prescriptionBottle, color:Colors.blue),
+                              icon: Icon(FontAwesomeIcons.prescriptionBottle, color:Colors.orange),
                               iconSize: 50,
                               onPressed: () { Navigator.of(context).pushNamed(RefillReminder.routeName);},
                             ),
-                            Text("Refill Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
+                            Text("Refill Reminders", style: TextStyle(color: Colors.blueGrey, fontSize: 18, fontWeight: FontWeight.bold)),
                           ],
                         ),
 
@@ -86,11 +86,11 @@ class  Home extends StatelessWidget {
                       child: Column(
                         children: [
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.syringe, color:Colors.blue),
+                            icon: Icon(FontAwesomeIcons.syringe, color:Colors.orange),
                             iconSize: 50,
                             onPressed: () { Navigator.of(context).pushNamed(InjectionReminders.routeName);},
                           ),
-                          Text("Injection Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
+                          Text("Injection Reminders", style: TextStyle(color: Colors.blueGrey, fontSize: 18, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),
@@ -98,11 +98,11 @@ class  Home extends StatelessWidget {
                       child: Column(
                         children: [
                           IconButton(
-                            icon: Icon(FontAwesomeIcons.appleAlt, color:Colors.blue),
+                            icon: Icon(FontAwesomeIcons.appleAlt, color:Colors.orange),
                             iconSize: 50,
                             onPressed: () {Navigator.of(context).pushNamed(HealthHabitReminders.routeName);},
                           ),
-                          Text("Health Habit Reminders", style: TextStyle(color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold)),
+                          Text("Health Habit Reminders", style: TextStyle(color: Colors.blueGrey, fontSize: 18, fontWeight: FontWeight.bold)),
                         ],
                       ),
                     ),

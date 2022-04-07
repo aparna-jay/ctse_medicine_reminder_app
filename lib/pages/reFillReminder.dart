@@ -59,12 +59,12 @@ class _RefillReminderState extends State<RefillReminder> {
           : ListView.builder(
               itemCount: RefillReminderList.length,
               itemBuilder: (context, index) => Card(
-                color: Colors.indigo,
+                color: Colors.grey[200],
                 margin: const EdgeInsets.all(15),
                 child: ListTile(
                     title: Text(RefillReminderList[index]['name'],
                         style: const TextStyle(
-                            color: Colors.white,
+                            // color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold)),
                     subtitle: Text(
@@ -73,14 +73,14 @@ class _RefillReminderState extends State<RefillReminder> {
                           "\n" +
                           ' time : ' +
                           RefillReminderList[index]['time'],
-                      style: const TextStyle(color: Colors.white70),
+                      // style: const TextStyle(color: Colors.white70),
                     ),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
                         children: [
                           IconButton(
-                              icon: const Icon(Icons.edit , color: Colors.green),
+                              icon: const Icon(Icons.edit , color: Colors.blueGrey),
                               onPressed: () => {
                                     // _showForm(RefillReminderList[index]['id']),
                                     Navigator.push(

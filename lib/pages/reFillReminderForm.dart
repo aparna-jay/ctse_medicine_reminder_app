@@ -160,7 +160,7 @@ class _RefillReminderFormState extends State<RefillReminderForm> {
                     },
                     child:
                     Text(btn_lbl,
-                      // style: TextStyle(fontSizb -e: 20.0)
+                      style: TextStyle(fontSize: 18)
                     ),
                   ),
                 )

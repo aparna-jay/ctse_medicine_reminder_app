@@ -102,7 +102,7 @@ class _PillRemindersState extends State<PillReminders> {
             : ListView.builder(
           itemCount: _pillReminders.length,
           itemBuilder: (context, index) => Card(
-            color: Colors.blue[200],
+            color: Colors.grey[200],
             margin: const EdgeInsets.all(15),
             child: ListTile(
                 title: Text(_pillReminders[index]['name']),
@@ -112,12 +112,12 @@ class _PillRemindersState extends State<PillReminders> {
                   child: Row(
                     children: [
                       IconButton(
-                        icon: const Icon(Icons.edit), onPressed: () {
+                        icon: const Icon(Icons.edit, color: Colors.blueGrey), onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddPillReminder(_pillReminders[index]['id'])));
                       },
                       ),
                       IconButton(
-                        icon: const Icon(Icons.delete),
+                        icon: const Icon(Icons.delete, color: Colors.redAccent),
                         onPressed: () =>
                             showAlertDialog(context, _pillReminders[index]['id']),
                       ),

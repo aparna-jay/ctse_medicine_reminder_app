@@ -49,7 +49,7 @@ class Aboutus extends StatelessWidget {
                 //       color: Colors.blueGrey),
                 // ),
                 Card(
-                    color: Colors.lightBlue,
+                    color: Colors.white70,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
